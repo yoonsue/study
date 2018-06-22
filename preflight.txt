@@ -1,0 +1,47 @@
+
+
+
+초기 설정 
+sudo vi /etc/hosts
+
+| 166.104.231.50 cephnode1
+| 166.104.231.50 cephnode2
+| 166.104.231.50 cephnode3
+
+
+
+wget -q -O- 'https://download.ceph.com/keys/release.asc' | sudo apt-key add -
+echo deb https://download.ceph.com/debian-{ceph-stable-release}/ $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
+sudo apt update
+sudo apt install ceph-deploy
+
+sudo apt install ntp
+sudo apt install openssh-server
+
+ssh yoonsue@166.104.231.50
+# repeat below cephnode1 to cephnode3
+sudo useradd -d /home/cephnode1 -m cephnode1
+sudo passwd cephnode1
+
+# {username} --> cephnode1 to cephnode3
+echo "{username} ALL = (root) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/{username}
+sudo chmod 0440 /etc/sudoers.d/{username}
+
+
+ssh-keygen
+
+sudo vi ~/.ssh/config
+
+## repeat below cephnode1 to cephnode3
+| Host cephnode1
+|	Hostname cephnode1
+|	User	cephnode1
+
+chmod 644 ~/.ssh/config
+
+ssh-keyscan cephnode1 cephnode2 cephnode3 >> ~/.ssh/know_hosts
+ssh-copy-id cephnode1@cephnode1
+ssh-copy-id cephnode2@cephnode2
+ssh-copy-id cephnode3@cephnode3
+
+
