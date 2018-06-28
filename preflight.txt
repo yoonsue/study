@@ -39,7 +39,7 @@ sudo vi ~/.ssh/config
 
 chmod 644 ~/.ssh/config
 
-ssh-keyscan cephnode1 cephnode2 cephnode3 >> ~/.ssh/know_hosts
+ssh-keyscan cephnode1 cephnode2 cephnode3 >> ~/.ssh/known_hosts
 ssh-copy-id cephnode1@cephnode1
 ssh-copy-id cephnode2@cephnode2
 ssh-copy-id cephnode3@cephnode3
