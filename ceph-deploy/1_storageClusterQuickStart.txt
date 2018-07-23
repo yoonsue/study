@@ -11,6 +11,8 @@ ceph-deploy new cephnode1
 ceph-deploy install cephnode1 cephnode2 cephnode3 --release luminous
 ceph-deploy mon create-initial
 ceph-deploy admin cephnode1 cephnode2 cephnod3
+# At admin node, for ensuring that the keyring file has read permissions.
+sudo chmod +r /etc/ceph/ceph.client.admin.keyring
 
 ceph-deploy osd create --data /dev/loop1 cephnode1
 ceph-deploy osd create --data /dev/loop2 cephnode2
