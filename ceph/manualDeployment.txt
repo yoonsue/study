@@ -29,7 +29,7 @@ sudo -u ceph ceph-authtool --create-keyring /tmp/ceph.mon.keyring --gen-key -n m
 sudo ceph-authtool --create-keyring /etc/ceph/ceph.client.admin.keyring --gen-key -n client.admin --set-uid=0 --cap mon 'allow *' --cap osd 'allow *' --cap mds 'allow *' --cap mgr 'allow *'
 sudo mkdir -p /var/lib/ceph/bootstrap-osd
 sudo chown -R ceph:ceph /var/lib/ceph
-sudo -u ceph sudo ceph-authtool --create-keyring /var/lib/ceph/bootstrap-osd/ceph.keyring --gen-key -n client.bootstrap-osd --cap mon 'profile bootstrap-osd'
+sudo -u ceph ceph-authtool --create-keyring /var/lib/ceph/bootstrap-osd/ceph.keyring --gen-key -n client.bootstrap-osd --cap mon 'profile bootstrap-osd'
 sudo ceph-authtool /tmp/ceph.mon.keyring --import-keyring /etc/ceph/ceph.client.admin.keyring
 sudo ceph-authtool /tmp/ceph.mon.keyring --import-keyring /var/lib/ceph/bootstrap-osd/ceph.keyring
 sudo -u ceph monmaptool --create --add cephnode1 192.168.1.31 --fsid c16c8ea8-31ab-4940-b971-d2edf940de1c /tmp/monmap
@@ -44,13 +44,20 @@ sudo chmod +r /etc/ceph/ceph.client.admin.keyring
 sudo systemctl start ceph-mon@cephnode1
 
 # Gather keys from another nodes.
+sudo scp /etc/ceph/* cephnode2@cephnode2:~
+sudo scp /var/lib/ceph/bootstrap-osd/ceph.keyring cephnode2@cephnode2:~
 ssh cephnode2
-sudo mkdir -p /var/lib/ceph/osd
-sudo mkdir -p /var/lib/ceph/bootstrap-osd
+
 # Copy keyring into bootstrap-osd
+sudo mkdir -p /var/lib/ceph/bootstrap-osd
+sudo mv ~/ceph.keyring /var/lib/ceph/bootstrap-osd/
 sudo chown -R ceph:ceph /var/lib/ceph
-sudo mkdir -p /etc/ceph
+
+
 # Copy ceph.conf and admin.keyring
+sudo mkdir -p /etc/ceph
+sudo mv ~/ceph.client.admin.keyring /etc/ceph/
+sudo mv ~/ceph.conf /etc/ceph/
 
 # Deploy osd.
 sudo -u ceph mkdir -p /var/lib/ceph/osd
