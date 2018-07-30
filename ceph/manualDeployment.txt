@@ -39,9 +39,16 @@ sudo -u ceph touch /var/lib/ceph/mon/ceph-cephnode1/done
 sudo chmod +r /etc/ceph/ceph.client.admin.keyring
 
 # Copy systemd files into the /lib/systemd/system directory at all ceph nodes.
+cp systemd/system/* /lib/systemd/system/
 
 # Run ceph monitor in background.
 sudo systemctl start ceph-mon@cephnode1
+
+# Check ceph monitor activated.
+ps aux | grep ceph-mon
+
+# Check ceph status (there must be 'cold-store' in result)
+ceph -s
 
 # Gather keys from another nodes.
 sudo scp /etc/ceph/* cephnode2@cephnode2:~
@@ -52,6 +59,14 @@ ssh cephnode2
 sudo mkdir -p /var/lib/ceph/bootstrap-osd
 sudo mv ~/ceph.keyring /var/lib/ceph/bootstrap-osd/
 sudo chown -R ceph:ceph /var/lib/ceph
+
+# Check lv list.
+sudo lvs 
+# If there is a lv in list, remove it.
+sudo lvremove (VG-name)
+# Check ceph is mounted.
+df -h
+# If ceph exists, umount it.
 
 
 # Copy ceph.conf and admin.keyring
@@ -67,3 +82,21 @@ sudo ceph-volume lvm create --data /dev/sda
 # Check the ceph status.
 ceph -s
 
+
+### UNINSTALL
+
+# Stop the background service
+sudo systemctl stop ceph-mon
+
+# Remove files that can't be removed by uninstall
+sudo rm /tmp/monmap
+sudo rm /tmp/ceph.mon.keyring
+
+# Uninstall each node at build directory
+sudo make uninstall
+
+# In user 'park' at directory 'ceph-cluster', do ceph-deploy purge, purgedata, forgetkeys
+ceph-deploy purge cephnode1 cephnode2 cepnhode3
+ceph-deploy purgedata cephnode1 cephnode2 cepnhode3
+ceph-deploy forgetkeys
+rm *
