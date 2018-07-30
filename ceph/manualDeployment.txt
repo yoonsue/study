@@ -63,7 +63,7 @@ sudo chown -R ceph:ceph /var/lib/ceph
 # Check lv list.
 sudo lvs 
 # If there is a lv in list, remove it.
-sudo lvremove (VG-name)
+sudo lvremove {VG-name}
 # Check ceph is mounted.
 df -h
 # If ceph exists, umount it.
@@ -88,9 +88,15 @@ ceph -s
 # Stop the background service
 sudo systemctl stop ceph-mon
 
-# Remove files that can't be removed by uninstall
+# [MON] Remove files that can't be removed by uninstall
 sudo rm /tmp/monmap
 sudo rm /tmp/ceph.mon.keyring
+
+# [OSD] 
+sudo umount /dev/sda
+sudo lvs              # check
+sudo lvremove {VG-name}
+sudo ceph-volume lvm zap
 
 # Uninstall each node at build directory
 sudo make uninstall
