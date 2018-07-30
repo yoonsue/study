@@ -1,0 +1,20 @@
+git clone https://github.com/jaemyoun/YCSB.git
+cd YSCB/
+git checkout 7aaec27
+
+# Build
+mvn clean package
+
+./bin/ycsb.sh load basic -P workloads/workloada
+./bin/ycsb.sh run basic -P workloads/workloada
+
+
+
+##### Following cases are examples of checking workloads in various databases.
+# CASE: Cassandra database (Reference: http://call518.tistory.com/116)
+./bin/ycsb load cassandra-10 -P workloads/workloada -p hosts=172.21.81.139,172.21.81.127 -p cassandra.connectionretries=1 -p cassandra.operationretries=1
+
+# CASE: MongoDB (Reference: https://scalegrid.io/blog/how-to-benchmark-mongodb-with-ycsb/)
+./bin/ycsb load mongodb -s -P workloads/workloada -p recordcount=10000000 -threads 16 -p
+ mongodb.url="mongodb://user:pwd@server1.example.com:9999,server2.example.com:9999/dbname" -p 
+ mongodb.auth="true"
