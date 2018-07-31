@@ -5,8 +5,9 @@ git checkout 7aaec27
 # Build
 mvn clean package
 
-./bin/ycsb.sh load basic -P workloads/workloada
-./bin/ycsb.sh run basic -P workloads/workloada
+# You can set configurations with the shell command.
+./bin/ycsb.sh load rados -s -P workloads/workloada -p "rados.configfile=/etc/ceph/ceph.conf" -p "rados.id=admin" -p "rados.pool=data" > ouputLoad.txt
+./bin/ycsb.sh run rados -s -P workloads/workloada > outputRun.txt
 
 
 
