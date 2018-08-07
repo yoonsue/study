@@ -1,0 +1,27 @@
+#### pool: http://docs.ceph.com/docs/master/rados/operations/pools/
+ceph osd pool create {pool-name} pg_num
+
+ceph osd pool set {pool-name} pg_num {pg_num}
+
+# valid formats ar plain (default) and json.
+ceph pg dump [--format {format}]
+
+
+# remove pool: http://docs.ceph.com/docs/giant/man/8/rados/
+rados rmpool foo foo –yes-i-really-really-mean-it
+# If get in trouble when removing pool, add following string at '/etc/ceph/ceph.conf'
+[mon]
+	mon allow pool delete = true
+
+
+
+
+#### crush: http://docs.ceph.com/docs/master/rados/operations/crush-map/
+# simple view the CRUSH hierarchy for my cluster
+ceph osd crush tree
+
+ceph osd crush rule ls
+ceph osd crush rule dump
+
+# The following example adds osd.0 to the hierarchy, or moves the OSD from a previous location.
+ceph osd crush set osd.0 1.0 root=default datacenter=dc1 room=room1 row=foo rack=bar host=foo-bar-1
