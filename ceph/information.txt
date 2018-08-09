@@ -11,8 +11,9 @@ ceph osd dump | grep -i pool-A
 # you can change a value of key.
 ceph osd pool set pool-A size 3
 
-# putting some objects in pool-A
-rados -p pool-A put object-A object-A
+# create object & put object in pool-A
+echo "I am test data for a test object" | rados --pool pool-A put object-A -
+rados --pool pool-A get object-A -
 
 # check how many objects does the pool contains
 rados -p pool-A ls
