@@ -1,3 +1,34 @@
+#### https://ceph.com/geen-categorie/how-data-is-stored-in-ceph-cluster/
+ceph osd pool create pool-A 128
+# Check osd created.
+ceph osd lspools
+# get 'pg_num' value ( there are lots of keys in pool )
+ceph osd pool get pool-A pg_num
+
+# Find out replication level (size)
+ceph osd dump | grep -i pool-A
+## result : pool 3 'pool-A' rep size 2 min_size 1 crush_ruleset 0 object_hash rjenkins pg_num 128 last_change 4051 owner 0
+# you can change a value of key.
+ceph osd pool set pool-A size 3
+
+# putting some objects in pool-A
+rados -p pool-A put object-A object-A
+
+# check how many objects does the pool contains
+rados -p pool-A ls
+
+# locating object, to which PG it belongs and stored where
+ceph osd map pool-A object-A
+## result : osdmap e4055 pool 'pool-A' (3) object 'object-A' -> pg 36.b301e3e8 (36.68) -> up [122,63,62] acting [122,63,62]
+
+# login to ceph nodes containing OSD 122, 63, 62
+# you can see your OSD mounted
+df -h /var/lib/ceph/osd/ceph-122
+
+################### Stucked here ################### there is no repository 'current'
+# move to directory ACTUAL OBJECTS are stored 
+cd /var/lib/ceph/osd/ceph-122/current
+
 #### pool: http://docs.ceph.com/docs/master/rados/operations/pools/
 ceph osd pool create {pool-name} pg_num
 
@@ -9,12 +40,11 @@ ceph pg dump [--format {format}]
 
 # remove pool: http://docs.ceph.com/docs/giant/man/8/rados/
 rados rmpool foo foo –yes-i-really-really-mean-it
+ceph osd pool delete {pool-name} [{pool-name} --yes-i-really-really-mean-it]
 # If get in trouble when removing pool, add following string at '/etc/ceph/ceph.conf'
 [mon]
 	mon allow pool delete = true
-
-
-
+	
 
 #### crush: http://docs.ceph.com/docs/master/rados/operations/crush-map/
 # simple view the CRUSH hierarchy for my cluster
