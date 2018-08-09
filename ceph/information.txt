@@ -30,6 +30,15 @@ df -h /var/lib/ceph/osd/ceph-122
 # move to directory ACTUAL OBJECTS are stored 
 cd /var/lib/ceph/osd/ceph-122/current
 
+
+#### rados bench : https://tracker.ceph.com/projects/ceph/wiki/Benchmark_Ceph_Cluster_Performance
+rados bench -p pool-A 10 write --no-cleanup
+# check pool-A object list
+rados -p pool-A ls
+
+
+
+
 #### pool: http://docs.ceph.com/docs/master/rados/operations/pools/
 ceph osd pool create {pool-name} pg_num
 
