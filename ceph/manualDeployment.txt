@@ -47,6 +47,14 @@ sudo systemctl start ceph-mon@cephnode1
 # Check ceph monitor activated.
 ps aux | grep ceph-mon
 
+# Run ceph mgr.
+sudo -u ceph mkdir -p /var/lib/ceph/mgr/ceph-cephnode1
+ceph auth get-or-create mgr.cephnode1 mon 'allow profile mgr' osd 'allow *' mds 'allow *' > keyring
+sudo chmod 600 keyring
+sudo mv keyring /var/lib/ceph/mgr/ceph-cephnode1/
+sudo chown -R ceph:ceph /var/lib/ceph/mgr
+sudo systemctl start ceph-mgr@cephnode1
+
 # Check ceph status (there must be 'cold-store' in result)
 ceph -s
 
