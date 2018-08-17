@@ -9,7 +9,7 @@ mvn clean package
 mvn -pl com.yahoo.ycsb:rados-binding -am clean package
 
 # You can set configurations with the shell command.
-./bin/ycsb.sh load rados -s -P workloads/workloada -p "rados.configfile=/etc/ceph/ceph.conf" -p "rados.id=admin" -p "rados.pool=data" > ouputLoad.txt
+./bin/ycsb.sh load rados -s -P workloads/workloada -p "rados.configfile=/etc/ceph/ceph.conf" -p "rados.id=admin" -p "rados.pool=data" > outputLoad.txt
 ./bin/ycsb.sh run rados -s -P workloads/workloada > outputRun.txt
 
 
