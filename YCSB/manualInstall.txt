@@ -1,6 +1,5 @@
 git clone https://github.com/jaemyoun/YCSB.git
 cd YSCB/
-git checkout 7aaec27
 
 # Build
 mvn clean package
