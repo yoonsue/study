@@ -11,6 +11,10 @@ sudo make install
 # 1 mon, many osds.
 # All processes are running by root.
 
+# Make log directory for ceph daemons.
+sudo mkdir -p /var/log/ceph
+sudo chown -R ceph:ceph /var/log/ceph
+
 # Launching monitor daemon.
 # ssh to monitor node.
 sudo mkdir -p /etc/ceph
@@ -42,6 +46,8 @@ sudo chmod +r /etc/ceph/ceph.client.admin.keyring
 cp systemd/system/* /lib/systemd/system/
 
 # Run ceph monitor in background.
+sudo systemctl enable ceph.target
+sudo systemctl enable ceph-mon@cephnode1
 sudo systemctl start ceph-mon@cephnode1
 
 # Check ceph monitor activated.
