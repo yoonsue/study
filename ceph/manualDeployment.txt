@@ -29,6 +29,15 @@ auth_cluster_required = cephx
 auth_service_required = cephx
 auth_client_required = cephx
 
+[mon]
+debug mon = 20
+
+[osd]
+debug osd = 20
+debug bluestore = 20
+debug bluefs = 20
+debug bdev = 20
+
 sudo -u ceph ceph-authtool --create-keyring /tmp/ceph.mon.keyring --gen-key -n mon. --cap mon 'allow *'
 sudo ceph-authtool --create-keyring /etc/ceph/ceph.client.admin.keyring --gen-key -n client.admin --set-uid=0 --cap mon 'allow *' --cap osd 'allow *' --cap mds 'allow *' --cap mgr 'allow *'
 sudo mkdir -p /var/lib/ceph/bootstrap-osd
