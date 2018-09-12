@@ -36,8 +36,6 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
-//import java.util.concurrent.TimeUnit;
-//import java.lang.Thread;
 
 import org.json.JSONObject;
 
@@ -58,12 +56,13 @@ public class RadosClient extends DB {
   public static final String POOL_PROPERTY = "rados.pool";
   public static final String POOL_DEFAULT = "data";
   public static final String OBJECT_PUT_PERIOD = "rados.putPeriod";
-  public static final String/*int*/ OBJECT_PUT_PERIOD_DEFAULT = "300";
-  public int objectPutPeriodInt = 300;
+  public static final String OBJECT_PUT_PERIOD_DEFAULT = "300";  /*int*/
+
+  private int objectPutPeriodInt = 300;
 
   private boolean isInited = false;
 
-  public int init() throws DBException {
+  public void init() throws DBException {
     Properties props = getProperties();
 
     String configfile = props.getProperty(CONFIG_FILE_PROPERTY);
@@ -85,7 +84,7 @@ public class RadosClient extends DB {
     if (objectPutPeriod == null) {
       objectPutPeriod = OBJECT_PUT_PERIOD_DEFAULT;
     }
-//    objectPutPeriodInt = convertToInt(objectPutPeriod);
+    objectPutPeriodInt = convertToInt(objectPutPeriod);
 
     // try {
     // } catch (UnsatisfiedLinkError e) {
@@ -102,7 +101,6 @@ public class RadosClient extends DB {
     }
 
     isInited = true;
-
   }
 
   public void cleanup() throws DBException {
@@ -156,6 +154,7 @@ public class RadosClient extends DB {
     }
 
     try {
+      System.out.println("period"+ objectPutPeriodInt);
       java.lang.Thread.sleep(objectPutPeriodInt);
     } catch(InterruptedException e) {
       java.lang.Thread.currentThread().interrupt();
@@ -199,8 +198,8 @@ public class RadosClient extends DB {
     try {
       converted = java.lang.Integer.parseInt(str);
     } catch(Exception e) {
-      return new Exception(e.getMessage() + ": " + e.getReturnValue());
+      return converted;
     }
-    return converted
+    return converted;
   }
 }
