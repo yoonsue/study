@@ -55,10 +55,10 @@ public class RadosClient extends DB {
   public static final String ID_DEFAULT = "admin";
   public static final String POOL_PROPERTY = "rados.pool";
   public static final String POOL_DEFAULT = "data";
-  public static final String OBJECT_PUT_PERIOD = "rados.putPeriod";
-  public static final String OBJECT_PUT_PERIOD_DEFAULT = "300";  /*int*/
+  public static final String OBJECT_PUT_DELAY = "rados.delay";
+  public static final String OBJECT_PUT_DELAY_DEFAULT = "300";  /*int*/
 
-  private int objectPutPeriodInt = 300;
+  private int objectPutDelayInt = 300;
 
   private boolean isInited = false;
 
@@ -80,11 +80,11 @@ public class RadosClient extends DB {
       pool = POOL_DEFAULT;
     }
 
-    String objectPutPeriod = props.getProperty(OBJECT_PUT_PERIOD);
-    if (objectPutPeriod == null) {
-      objectPutPeriod = OBJECT_PUT_PERIOD_DEFAULT;
+    String objectPutDelay = props.getProperty(OBJECT_PUT_DELAY);
+    if (objectPutDelay == null) {
+      objectPutDelay = OBJECT_PUT_DELAY_DEFAULT;
     }
-    objectPutPeriodInt = convertToInt(objectPutPeriod);
+    objectPutDelayInt = convertToInt(objectPutDelay);
 
     // try {
     // } catch (UnsatisfiedLinkError e) {
@@ -154,8 +154,8 @@ public class RadosClient extends DB {
     }
 
     try {
-      System.out.println("period"+ objectPutPeriodInt);
-      java.lang.Thread.sleep(objectPutPeriodInt);
+      System.out.println("Delay"+ objectPutDelayInt);
+      java.lang.Thread.sleep(objectPutDelayInt);
     } catch(InterruptedException e) {
       java.lang.Thread.currentThread().interrupt();
     }
