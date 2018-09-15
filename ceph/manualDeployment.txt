@@ -30,6 +30,7 @@ auth_service_required = cephx
 auth_client_required = cephx
 
 [mon]
+mon allow pool delete = true
 debug mon = 20
 
 [osd]
