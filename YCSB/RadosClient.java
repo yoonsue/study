@@ -58,7 +58,7 @@ public class RadosClient extends DB {
   public static final String OBJECT_PUT_DELAY = "rados.delay";
 //   public static final String OBJECT_PUT_DELAY_DEFAULT = "300";  /*int*/
 
-  private int objectPutDelayInt;
+  private int objectPutDelayInt = 0;
 
   private boolean isInited = false;
 
@@ -82,7 +82,7 @@ public class RadosClient extends DB {
 
     String objectPutDelay = props.getProperty(OBJECT_PUT_DELAY);
     if (objectPutDelay == null) {
-      objectPutDelay = 0;
+      objectPutDelay = OBJECT_PUT_DELAY_DEFAULT;
     }
     objectPutDelayInt = convertToInt(objectPutDelay);
 
