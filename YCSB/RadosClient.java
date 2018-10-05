@@ -82,7 +82,7 @@ public class RadosClient extends DB {
 
     String objectPutDelay = props.getProperty(OBJECT_PUT_DELAY);
     if (objectPutDelay != null) {
-      objectPutDelay = objectPutDelayInt = convertToInt(objectPutDelay);
+      objectPutDelayInt = convertToInt(objectPutDelay);
     }
 
     // try {
