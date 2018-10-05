@@ -154,8 +154,8 @@ public class RadosClient extends DB {
 
     try {
       if (objectPutDelayInt!=0) {
-        java.lang.Thread.sleep(objectPutDelayInt)
-      };
+        java.lang.Thread.sleep(objectPutDelayInt);
+      }
     } catch(InterruptedException e) {
       java.lang.Thread.currentThread().interrupt();
     }
