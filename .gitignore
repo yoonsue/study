@@ -1,3 +1,6 @@
 # Exectue File
 *.exe
 *.out
+
+# Configuration
+.vscode
