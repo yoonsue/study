@@ -1,3 +1,6 @@
-# ceph
+# Study
 
-[ceph ssh config reference](https://www.howtoforge.com/tutorial/how-to-install-a-ceph-cluster-on-ubuntu-16-04/)
+* [Algorithm](hhttps://github.com/yoonsue/study/tree/master/algorithm)
+* [Git](https://github.com/yoonsue/study/tree/master/git)
+* [Book](https://github.com/yoonsue/study/tree/master/book)
+  * [GoF](https://www.github.com/yoonsue/study/book/gof)
