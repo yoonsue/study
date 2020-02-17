@@ -2,5 +2,8 @@
 *.exe
 *.out
 
+*.iml
+
 # Configuration
-.vscode
+/.vscode/
+/.idea/
