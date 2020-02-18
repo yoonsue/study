@@ -14,6 +14,7 @@
 # Patterns
 
 ## 1. Abstract Factory Pattern
+- [AbstractFactory](http://www.github.com/yoonsue/)
 * 제품을 생성하기 위한 인터페이스
 * 일반화된 클래스(부모 클래스)가 더 상세한 클래스(서브클래스)를 묶고, 이 일반화된 클래스를 통해 클라이언트는 접근함. 
 * 세부 구현은 상세한 클래스(서브 클래스)에서 이루어짐.
