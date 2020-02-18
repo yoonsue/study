@@ -1,7 +1,7 @@
-package AbstractFactory.WindowFactory;
+package abstract_factory.WindowFactory;
 
-import AbstractFactory.Button;
-import AbstractFactory.GUIFactory;
+import abstract_factory.Button;
+import abstract_factory.GUIFactory;
 
 // Concrete Factory 2
 public class WindowFactory implements GUIFactory {

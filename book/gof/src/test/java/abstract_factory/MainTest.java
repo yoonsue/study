@@ -1,7 +1,7 @@
-package AbstractFactory;
+package abstract_factory;
 
-import AbstractFactory.OSXFactory.OSXFactory;
-import AbstractFactory.WindowFactory.WindowFactory;
+import abstract_factory.OSXFactory.OSXFactory;
+import abstract_factory.WindowFactory.WindowFactory;
 import org.junit.jupiter.api.Test;
 
 class MainTest {

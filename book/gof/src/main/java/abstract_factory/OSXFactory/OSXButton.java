@@ -1,6 +1,6 @@
-package AbstractFactory.OSXFactory;
+package abstract_factory.OSXFactory;
 
-import AbstractFactory.Button;
+import abstract_factory.Button;
 
 // Concrete Product 1
 public class OSXButton implements Button {

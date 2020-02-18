@@ -1,6 +1,6 @@
-package AbstractFactory.WindowFactory;
+package abstract_factory.WindowFactory;
 
-import AbstractFactory.Button;
+import abstract_factory.Button;
 
 // Concrete Product 2
 public class WindowButton implements Button {

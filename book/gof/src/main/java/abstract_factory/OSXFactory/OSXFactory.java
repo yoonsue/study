@@ -1,7 +1,7 @@
-package AbstractFactory.OSXFactory;
+package abstract_factory.OSXFactory;
 
-import AbstractFactory.Button;
-import AbstractFactory.GUIFactory;
+import abstract_factory.Button;
+import abstract_factory.GUIFactory;
 
 // Concrete Factory 1
 public class OSXFactory implements GUIFactory{

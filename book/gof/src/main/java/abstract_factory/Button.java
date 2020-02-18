@@ -1,4 +1,4 @@
-package AbstractFactory;
+package abstract_factory;
 
 // Abstract Product
 public interface Button {
