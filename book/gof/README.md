@@ -32,3 +32,11 @@
 * 각각 독립된 여러 단계를 거치며, 특정 단계의 선택폭(프로토콜, representation 방법)이 넓을 때 사용하면 좋을 듯함.
 * 사용 예
   * RTF(서식있는 텍스트 파일) 리더
+  
+## 3. Factory Method
+- [Factory Method](http://www.github.com/yoonsue/)
+* 
+ 
+* 유의
+  * Factory Method: 하나의 메소드가 여러 종류의 객체 생성 (미리 선지정하는 느낌)
+  * Abstract Factory Method: 내부에 (보통 팩토리 메소드를 사용해서) 여러 객체를 생성
