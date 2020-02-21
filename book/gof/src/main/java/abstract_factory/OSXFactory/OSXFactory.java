@@ -8,6 +8,7 @@ public class OSXFactory implements GUIFactory{
     public OSXFactory() {
     }
 
+    // Factory Method
     public Button CreateButton() {
         System.out.println("OSX Factory - CreateButton");
         return new OSXButton();

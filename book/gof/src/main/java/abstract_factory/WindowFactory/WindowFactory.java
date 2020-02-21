@@ -9,6 +9,7 @@ public class WindowFactory implements GUIFactory {
     public WindowFactory() {
     }
 
+    // Factory Method
     public Button CreateButton() {
         System.out.println("Window Factory - CreateButton");
         return new WindowButton();

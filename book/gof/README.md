@@ -23,8 +23,7 @@
   * 구현 내용이 아닌 인터페이스를 노출시킬때
 
 * 유의
-  * <i>Builder: 실체를 만들 때 build 되는 내용에 대해 전혀 모르는 것
-  * Factory Method: 서브클래스가 override하는 abstract method </i>
+  * <i>Builder: 실체를 만들 때 build 되는 내용에 대해 전혀 모르는 것</i>
 
 ## 2. Builder
 - [Builder](http://www.github.com/yoonsue/)
@@ -35,8 +34,11 @@
   
 ## 3. Factory Method
 - [Factory Method](http://www.github.com/yoonsue/)
-* 
+* Factory 객체 내에서 한 객체를 생성(지정)하는 메소드
  
 * 유의
-  * Factory Method: 하나의 메소드가 여러 종류의 객체 생성 (미리 선지정하는 느낌)
-  * Abstract Factory Method: 내부에 (보통 팩토리 메소드를 사용해서) 여러 객체를 생성
+<br/>
+  Abstract Factory(제품군 안내) > Factory(제품 생성 담당) > Factory Method (상세 부품 생성 담당)
+  * Factory Method: Abstract factory 객체 내에 한 객체를 생성하는 하나의 메소드
+    * 서브 클래스에 의해 override 될 수 있음
+  * Abstract Factory Method: 내부에 (보통 팩토리 메소드를 사용해서) 여러 객체를 생성하는 하나의 객체(인터페이스)
