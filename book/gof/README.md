@@ -58,3 +58,10 @@
 * 유의
   * 추상 팩토리: 프로토타입 집합을 저장, 필요할때 복제해서 제품 객체를 반환하도록 사용 가능
   * 프로토타입: 복사본 생성
+
+## 5. Singleton
+- [Singleton](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/singleton)
+* 단 하나의 인스턴스만 갖는 클래스, 해당 인스턴스에 전역적 접근이 가능함 
+
+* 사용 예
+  * 메타클래스 
