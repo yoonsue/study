@@ -5,5 +5,5 @@
 *.iml
 
 # Configuration
-/.vscode/
-/.idea/
+`.vscode/
+.idea/
