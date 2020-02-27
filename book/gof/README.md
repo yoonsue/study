@@ -84,6 +84,9 @@
   * Decorator: 몇몇 메소드를 수정하거나 메소드를 추가함 (Wrapped Object)
 
 ### 7. Bridge
+* 추상적 개념에 해당하는 클래스와 구현에 해당하는 클래스를 분리
+* 플랫폼 독립적인 코드(Abstraction)와 Application-specific code(Implementor)
+<!-- Abstraction, RefinedAbstraction, Implementor, ConcreteImplementor -->
 
 ### 8. Composite
 * 계층 구조를 어떻게 형성하는지 보여줌
