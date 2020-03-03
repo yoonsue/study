@@ -84,12 +84,21 @@
   * Decorator: 몇몇 메소드를 수정하거나 메소드를 추가함 (Wrapped Object)
 
 ### 7. Bridge
+- [Bridge](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/bridge)
 * 추상적 개념에 해당하는 클래스와 구현에 해당하는 클래스를 분리
 * 플랫폼 독립적인 코드(Abstraction)와 Application-specific code(Implementor)
 <!-- Abstraction, RefinedAbstraction, Implementor, ConcreteImplementor -->
 
 ### 8. Composite
+- [Composite](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/composite)
 * 계층 구조를 어떻게 형성하는지 보여줌
+* 사용자가 어떤 Leaf나 Composite 클래스가 존재하는지 모르게 공통 연산들을 정의한 Component(인터페이스)
+  * Composite은 linked list, array, tree, hash table 등을 써 자신의 자식들을 저장
+  * 자식 구성요소에서 부모를 가리키는 참조자를 관리
+<!-- Component(총괄인터페이스), Leaf(최하위객체), Composite(하위그룹객체), Client -->
+
+* 사용 예
+  * File Directory
 
 ### 9. Decorator
 * 동적으로 새로운 책임 추가(재귀적 합성)하는 객체

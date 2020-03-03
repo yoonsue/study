@@ -13,6 +13,6 @@ public class RectShape implements Shape {
 
     @Override
     public void draw() {
-        drawing.devDraw();
+        drawing.devDraw(x, y);
     }
 }
