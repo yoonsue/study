@@ -11,4 +11,15 @@
     * 인터페이스간 (extends classA, classB)
     * 구현클래스가 상속받을시 (implements class1, class2)
   * 인터페이스는 빈 메소드(껍데기)만 있음. 서브킅래스에서의 함수 구현을 강제시킴
-  * static 변수만 가질수 있음:
+  * static 변수만 가질수 있음
+  
+## static
+keyword: 공유, 인스턴스 없이 접근가능
+* static 변수
+  * 메모리에 한번 할당되어 프로그램이 종료될 때 해제되는 변수
+  * 여러 객체가 해당 메모리를 공유
+* static 메소드
+  * 객체의 생성(인스턴스) 없이 호출이 가능. 객체에서는 호출이 불가능
+  * 대표예: java.util.Math
+* static 클래스
+  * inner class에 outer class의 인스턴스 생성 없이 사용하기 위해 붙임
