@@ -49,8 +49,8 @@ public class AquaIcon {
     static class SystemIcon extends CachingScalingIcon {
         final String selector;
 
-        private static final SystemIconUIResourceSingleton folderIcon = new SystemIconUIResourceSingleton("fldr");
-        static IconUIResource getFolderIconUIResource() {return folderIcon.get(); }
+        private static final SystemIconUIResourceSingleton documentIcon = new SystemIconUIResourceSingleton("docu");
+        static IconUIResource getDocumentIconUIResource() {return documentIcon.get(); }
 
         public SystemIcon(final String iconSelector, final int width, final int height) {
             super(width, height);
