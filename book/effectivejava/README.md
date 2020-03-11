@@ -23,3 +23,24 @@ keyword: 공유, 인스턴스 없이 접근가능
   * 대표예: java.util.Math
 * static 클래스
   * inner class에 outer class의 인스턴스 생성 없이 사용하기 위해 붙임
+
+## this
+this 키워드: 현재 클래스 인스턴스
+this() 메소드: 클래스에 정의된 생성자를 부를때
+
+## super
+super 키워드: 부모 클래스의 값을 가져온다
+```java
+public class Parent {
+    int num=0;
+}
+
+public class Child extends Parent {
+    int num=10;
+    System.out.Println(super.num); // 10
+}
+```
+super 메소드: 부모 클래스의 생성자를 호출
+```java
+super(); // 매개변수가 있는 부모 생성자의 경우는 적어줘야함
+```
