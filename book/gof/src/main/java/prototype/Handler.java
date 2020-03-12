@@ -1,6 +1,7 @@
 package prototype;
 
 import java.net.URL;
+import java.util.Optional;
 
 // Prototype
 public interface Handler extends Cloneable {
