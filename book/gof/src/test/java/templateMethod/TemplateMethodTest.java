@@ -12,7 +12,6 @@ class TemplateMethodTest {
         char[] buf = "hello world".toCharArray();
         MReader r = new MCharArrayReader(buf);
         r.reset();
-        Throwable e = assertThrows(IOException.class)
     }
 
     @Test
