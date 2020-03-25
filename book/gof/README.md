@@ -88,6 +88,7 @@
 * 추상적 개념에 해당하는 클래스와 구현에 해당하는 클래스를 분리
 * 플랫폼 독립적인 코드(Abstraction)와 Application-specific code(Implementor)
 <!-- Abstraction, RefinedAbstraction, Implementor, ConcreteImplementor -->
+  * 개인적으로 DDD의 Repository interface와 Repository 구현체 간 관계가 이에 해당한다 생각함 아닌것 같군, INTERFACE(ABSTRACT CLASS에 대한 참조자가 있어야함)와 그걸 IMPLEMENTS한 ABSTRACT CLASS간 관계
 
 ### 8. Composite
 - [Composite](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/composite)
@@ -101,7 +102,8 @@
   * File Directory
 
 ### 9. Decorator
-* 동적으로 새로운 책임 추가(재귀적 합성)하는 객체
+* 런타임시 동적으로 새로운 책임 추가(재귀적 합성)하는 객체
+
 
 ### 10. Facade
 * 전체 서브시스템을 표현하는 객체(대표객체)

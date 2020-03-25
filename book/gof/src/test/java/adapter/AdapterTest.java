@@ -1,6 +1,6 @@
 package adapter;
 
-import org.junit.jupiter.api.Test;
+import adapter.latest.LocaleProviderAdapter;
 
 import java.text.spi.DateFormatProvider;
 import java.util.Locale;
