@@ -44,3 +44,16 @@ super 메소드: 부모 클래스의 생성자를 호출
 ```java
 super(); // 매개변수가 있는 부모 생성자의 경우는 적어줘야함
 ```
+
+## Hibernate
+[hibernate-start](https://www.slideshare.net/visualkhh/hibernate-start)
+
+[Application - [Hibernate - [JPA - [JDBC API]]]] <-> DB
+
+자바 언어를 위한 ORM Framework.
+
+객체 지향 도메인 모델을 관계형 데이터베이스로 매핑하기 위한 프레임 워크를 제공함
+
+(기존 SQL 중심적 개발시 DTO 객체 변경, mapping이 번거롭기 때문에 나옴) 
+* ORM: Object Relational Mapping, 객체와 DB 테이블이 매핑을 이루는 것
+* JPA: Java Persistent API, ORM을 사용하기 위한 인터페이스를 모아둔 것
