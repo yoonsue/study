@@ -45,6 +45,26 @@ super 메소드: 부모 클래스의 생성자를 호출
 super(); // 매개변수가 있는 부모 생성자의 경우는 적어줘야함
 ```
 
+## volatile
+java 변수를 main memory에 저장함
+* multi thread 환경에서 thread가 각각 CPU cache에 저장된 값을 읽어오면 변수 값 불일치 문제가 발생
+
+## native
+java가 아닌 다른 언어로 구현한 후 자바에서 사용하려고 할 때 이용하는 키워드
+* JNI(Java Native Interface): JDK의 일부분으로 코드가 모든 플랫폼 상에서 완벽하게 이식되도록 함
+
+## 제네릭 타입
+타입 변환이 귀찮아서
+```java
+public class classA<T> { ... }                  // 제네릭 클래스
+public interface interfaceB<T> { ... }          // 제네릭 인터페이스
+public <T> ReturnType<T> methodC(T t) { ... }   // 제네릭 메소드
+// <?> --> 와일드 카드 타입
+// <T extends 상위타입> --> 상위 클래스 제한
+// <? super 하위타입> --> 하위 클래스 제한
+// Map.Entry<K,V>
+```
+
 ## Hibernate
 [hibernate-start](https://www.slideshare.net/visualkhh/hibernate-start)
 
