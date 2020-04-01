@@ -53,6 +53,9 @@ java 변수를 main memory에 저장함
 java가 아닌 다른 언어로 구현한 후 자바에서 사용하려고 할 때 이용하는 키워드
 * JNI(Java Native Interface): JDK의 일부분으로 코드가 모든 플랫폼 상에서 완벽하게 이식되도록 함
 
+## transient
+Serialize 하는 과정에서 제외하고 싶은 경우 선언하는 키워드
+
 ## 제네릭 타입
 타입 변환이 귀찮아서
 ```java

@@ -129,10 +129,19 @@
 ### 13. Chain of Responsibility
 
 ### 14. Command
+객체 내부의 작업 혹은 요청을 캡슐화함
 
+* 사용 예
+  * Transaction - undo
+  
 ### 15. Interpreter
+언어에 대한 문법을 정의하고, 그 문법을 계층화된 클래스로 구현하는 패턴
+
+* 사용 예
+  * Regular Expression
 
 ### 16. Iterator
+
 
 ### 17. Mediator
 
