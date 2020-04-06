@@ -132,7 +132,7 @@
 객체 내부의 작업 혹은 요청을 캡슐화함
 
 * 사용 예
-  * Transaction - undo
+  * Transaction - undo 시 기존 상태 기억을 위해 메멘토 패턴을 사용 
   
 ### 15. Interpreter
 언어에 대한 문법을 정의하고, 그 문법을 계층화된 클래스로 구현하는 패턴
@@ -154,6 +154,13 @@
   * Bridge: class들의 시스템(?)을 나타내는 인터페이스
   
 ### 18. Memento
+* 상태 복원을 위해 객체의 이전 상태를 저장하는 패턴
+* 객체의 상태를 얻는데 구현이 노출되어, 캡슐화를 할때 사용하는 패턴
+
+* 유의
+  * 인터페이스 생성 시, private / public을 잘 구분지어야 함
+    * narrow interface(public): memento 클래스에게 제ㅈ공하는 서비스
+    * wide interface(public + private): originator 클래스에게 제공하는 서비스
 
 ### 19. Observer
 
