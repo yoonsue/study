@@ -163,6 +163,25 @@
     * wide interface(public + private): originator 클래스에게 제공하는 서비스
 
 ### 19. Observer
+<!-- 
+ subject(감시자들을 알고 있음)
+ observer(객체를 갱신하는데 필요한 인터페이스를 정의)
+ concreteSubject(ConcreteObserver 객체에게 알려주어야 하는 상태를 저장, observer 에게 상태 변화 통보)
+ concreteObject(ConcreteSubject 객체에 대한 참조자 관리, 주체의 상태와 일관성을 유지해야하는 상태를 저장)--> 
+one-many pub-sub
+
+변경사항 - aspect
+
+- 구독 취소 시 이벤트 알림을 받지 않을 수 있음을 보장해야함
+- concreteSubject 삭제시 concreteObserver 가 dangling 레퍼런스를 가짐
+  - concreteSubject 삭제 시, 참조하고 있는 concreteObserver 에게 알려야함
+
+* 사용 예
+  * MVC(model - subject, view - observer)
+  
+* 유의
+  * Command: Observer는 공지용으로만 쓰이는 반면, 일반적임. (개념: Observer << Command)
+  * Strategy: <b>다시 확인할 것</b>
 
 ### 20. State
 
