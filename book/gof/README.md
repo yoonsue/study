@@ -197,6 +197,21 @@ one-many pub-sub
   * Flyweight: state 객체 공유를 위해 사용함
 
 ### 21. Strategy
+<!-- 
+    Context: strategy 객체에 대한 참조자 관리(concreteStrategy 인스턴스), Strategy 객체가 자료에 접근하는데 필요한 인터페이스 정의
+    Strategy: 제공하는 모든 알고리즘에 대한 공통 연산들을 인터페이스로 정의
+    ConcreteStrategy: strategy 인터페이스를 실제 알고리즘으로 구현
+-->
+common operation 이 반복되는 것을 막기 위해 인터페이스를 정의함(캡슐화함, 동일 계열의 알고리즘 군을 정의함)
+
+concreteStrategy(알고리즘) 간 서로 상호교환 가능함
+
+사용자가 서로 다른 행동 각각의 특징을 이미 알고 있을 때 전략 패턴을 사용함
+
+- 규모가 작은 클래스들이므로 플라이급 패턴으로 정의하는 것이 좋음
+
+* 유의
+  * Command: 일반적 <-> Strategy: 특정 액션
 
 ### 22. Template Method
 * 추상 클래스에서 구현된 (보통 자주 사용되는 혹은 필수적인 절차) 메소드
