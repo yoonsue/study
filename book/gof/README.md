@@ -159,7 +159,7 @@
 
 * 유의
   * 인터페이스 생성 시, private / public을 잘 구분지어야 함
-    * narrow interface(public): memento 클래스에게 제ㅈ공하는 서비스
+    * narrow interface(public): memento 클래스에게 제공하는 서비스
     * wide interface(public + private): originator 클래스에게 제공하는 서비스
 
 ### 19. Observer
@@ -184,6 +184,17 @@ one-many pub-sub
   * Strategy: <b>다시 확인할 것</b>
 
 ### 20. State
+<!-- 
+    Context: 사용자가 사용할 수 있는 기본 인터페이스 제공
+    State: 각 상태별 필요한 행동을 캡슐화하여 인터페이스로 정의 (Singleton 임)
+    ConcreteState: 각 서브 클래스들 context 따라 처리되어야할 실제 행동 구현
+-->
+상태를 객체로 승격시켜, 상태 전이를 명확하게 함
+(종종 대량의 조건문을 만들지 않기 위해(aka 상태의 종류가 다양할 때) 상태를 독립적으로 두어 구현함)
+
+* 유의
+  * Strategy: state는 하나의 state 에 관한 구현을 하나, 외부의 entity 에 의한 Strategy 는 아님
+  * Flyweight: state 객체 공유를 위해 사용함
 
 ### 21. Strategy
 
