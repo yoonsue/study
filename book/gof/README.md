@@ -219,3 +219,21 @@ concreteStrategy(알고리즘) 간 서로 상호교환 가능함
 * 훅 연산(오버라이드 가능한 메소드) 지정하는 것이 관건
   
 ### 23. Visitor
+시스템의 이해, 유지보수, 변경 작업 등을 쉽게하기 위해 각 객체 내부에 구현되어 있던 공통 연산들을 떼어내  
+Vistor라는 클래스를 따로 두어, 객체군(객체 구조 내 Elements)이 수행할 연산을 표현함
+
+ConcreteElement 클래스가 추가되면 vistor 클래스가 모두 변경되어야하므로,<br />
+Element 클래스의 구조의 변화가 없을 때 사용해야 함
+
+* double dispatch: Accept 연산은 결과적으로 두 과정을 거침 
+  * Accept(aVistor)를 호출하면
+  * ConcreteElement가 Element 가 자기자신을 파라미터로 넘겨 visitor 연산을 호출 
+  * 방향
+    * client 
+    <br/>-> objectStructure(Accept(aVisitor)) 
+    <br/>-> concreteElement(VisitConcreteElement(aConcreteElement))
+    <br/>-> visitor(Operation)
+
+* 유의
+  * Iterator: 방문자는 상속된 객체 혹은 부모 객체에 한해 접근할수 있음 <-> Visitor: Element에 접근할 권한이 허용됨
+  * Strategy: Strategy가 더 폭넓은 개념, visitor는 visiting strategy임
