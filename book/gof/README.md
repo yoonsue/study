@@ -92,11 +92,17 @@
 
 ### 8. Composite
 - [Composite](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/composite)
-* 계층 구조를 어떻게 형성하는지 보여줌
-* 사용자가 어떤 Leaf나 Composite 클래스가 존재하는지 모르게 공통 연산들을 정의한 Component(인터페이스)
-  * Composite은 linked list, array, tree, hash table 등을 써 자신의 자식들을 저장
+<!-- Component(총괄인터페이스), Composite(하위그룹객체), Leaf(최하위객체), Client -->
+* 계층 구조를 어떻게 형성하는지 보여줌 (파워포인트 그룹 객체와 같은 원리)
+* 사용자가 어떤 Leaf나 Composite 클래스가 존재하는지 모르게 공통 연산들을 정의한 Component(총괄인터페이스)
+  * Composite(그룹객체)은 linked list, array, tree, hash table 등을 써 자신의 자식들을 저장
   * 자식 구성요소에서 부모를 가리키는 참조자를 관리
-<!-- Component(총괄인터페이스), Leaf(최하위객체), Composite(하위그룹객체), Client -->
+  * 자식의 상태를 많은 부모와 공유해야할 경우 Flyweight 패턴을 사용하면 좋음.
+  * 행동은 Leaf(최말단객체)가 수행 ([Chain of Responsibility](###-13.-chain-of-responsibility))
+
+* 자식 관리 인터페이스를 Component가 갖느냐? Composite(그룹객체)이 갖느냐?
+  * Component: Leaf 클러스의 인스턴스가 Add() Remove()와 같은 행동을 하지 않도록 안전성 유지를 해야함
+  * Composite: Leaf 클래스 인스턴스가 무의미한 행동을 하지 않는 안전성을 보장하나, composite 클래스가 어떤 타입으로 자식들을 관리하는지 알 수 없음
 
 * 사용 예
   * File Directory
