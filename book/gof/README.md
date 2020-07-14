@@ -38,8 +38,7 @@
 * 객체를 생성(지정)하는 메소드
   
 * 유의
-<br/>
-  Abstract Factory(제품군 안내) > Factory(제품 생성 담당) > Factory Method (상세 부품 생성 담당)
+  * Abstract Factory(제품군 안내) > Factory(제품 생성 담당) > Factory Method (상세 부품 생성 담당)
   * Factory Method: 객체를 생성하는 메소드
     * 서브 클래스에 의해 override 될 수 있음
   * Abstract Factory: 내부에 (보통 팩토리 메소드를 사용해서) 여러 객체를 생성하는 하나의 객체(인터페이스)
@@ -108,7 +107,21 @@
   * File Directory
 
 ### 9. Decorator
+<!-- 
+    Component: 동적으로 추가할 서비스를 가질 가능성이 있는 객체들에 대한 인터페이스
+    ConcreteComponent: 추가적인 서비스가 실제로 정의될 필요가 있는 객체
+    Decorator: Component 객체에 대한 참조자를 관리하면서 Component에 정의된 인터페이스를 만족하도록 인터페이스를 정의
+    ConcreteDecorator: Component에 새롭게 추가할 서비스를 실제로 구현하는 클래스
+-->
+* 개별적인 객체에 새로운 책임을 추가하고자 할 경우 사용하는 패턴
 * 런타임시 동적으로 새로운 책임 추가(재귀적 합성)하는 객체
+* Component 인터페이스를 상속받는 Decorator 인터페이스를 생성해서 인스턴스(ConcreteDecorator의 인스턴스)를 생성
+
+* 유의
+  * Decorator: 객체의 겉(인터페이스)를 추가함
+  * Strategy: 객체의 대체를 통해 객체 내부적으로 기능을 변경하거나 확장하는 방법을 제공
+  * Adapter: Decorator는 일종의 Adapter이나, Adapter는 인터페이스의 변경에 초점을, Decorator는 객체의 책임과 행동의 변화에 초점을 둠
+  * Composite: Decorator는 한 구성요소만을 갖는 Composite임
 
 ### 10. Facade
 * 전체 서브시스템을 표현하는 객체(대표객체)
