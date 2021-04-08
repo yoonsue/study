@@ -36,3 +36,96 @@
  
  - 알쓸신잡..
    - HTML A tag는 URL이 아닌 URI를 넣어야 함 (URN은 가능)
+
+---
+### CSS
+- display 와 visibility 속성: https://webdir.tistory.com/348
+
+---
+### Bootstrap
+- http://bootstrapk.com/css/
+
+#### 그리드 시스템
+- 웹 페이지를 행과 12개의 열로 나누어서 레이아웃 할수 있도록
+- 화면 사이즈(모바일 등)에 따라 반응형 웹이 되도록
+
+##### 1. 구성
+( container(fixed-width) | container-fluid(full-width) ) ⊃ 
+- col 동작 방식: 
+  - padding을 통해 간격을 만듬
+  - 마진 값이 음수로 들어 있어 offset 으로 사용됨
+    - 비그리드 콘텐츠와 정렬되기 위함
+
+##### 2. 미디어 쿼리 (`@media (min-width: *** )`)
+- 작은 기기의 그리드 클래스가 오버라이드됨 (`col-md-*` 적용중인 UI에 `col-lg-*` 가 없을 경우에도 적용)
+###### 2.1. 주요 분기점
+```css
+/* 작은 기기(모바일폰, 768px >=) */
+@media (min-width: @screen-sm-min) { ... }
+/* 중간 기기(태블릿, 992px >=) */
+@media (min-width: @screen-md-min) { ... }
+/* 큰 기기(데스크탑, 1200px >=) */
+@media (min-width: @screen-lg-min) { ... }
+```
+- `@screen-sm-max` 도 존재함
+
+###### 2.2. 미디어 쿼리
+| 클래스 | CSS 스타일 |
+| -- | -- | 
+| `.hidden-*` | `display: block;` |
+| `.visible-*-block` | `display: block;` |
+| `.visible-*-inline` | `display: inline;` |
+| `.visible-*-inline-block` | `display: inline-block;` |
+| `.visible-print-inline-block` | `display: inline-block;` |
+
+##### 3. 그리드 옵션
+|	| 매우 작은 기기 모바일폰 (<768px) | 작은 기기 태블릿 (≥768px) | 중간 기기 데스크탑 (≥992px) | 큰 기기 데스크탑 (≥1200px) |
+| -- | -- | -- | -- | -- |
+| 그리드 적용 |	항상 |	분기점보다 크면 적용 | 좌동 | 좌동 |
+| 콘테이너 너비 |	없음 (auto) |	750px |	970px |	1170px |
+| 클래스 접두사 |	.col-xs- |	.col-sm- |	.col-md- |	.col-lg- |
+| 컬럼 수 |	12 | 좌동 | 좌동 | 좌동 |
+| 컬럼 너비 |	Auto |	~62px |	~81px |	~97px |
+| 사이 너비	| 30px (컬럼의 양쪽에 15px 씩) | 좌동 | 좌동 | 좌동 |
+| 중첩 | 예 | 좌동 | 좌동 | 좌동 |
+| 오프셋 |	예 | 좌동 | 좌동 | 좌동 |
+| 컬럼 순서정하기 |	예 | 좌동 | 좌동 | 좌동 |
+
+##### 유용할 클래스 & 변수
+```css
+/* TODO: ??? */
+.clearfix
+
+/* 열을 우측으로 옮긺 */
+.col-*-offset-*
+
+/* 열 순서 정하기 */
+.col-*-push-*
+.col-*-pull-*
+
+/* LESS 믹스인과 변수 */
+/* 변수 */
+@grid-columns: 12;
+@grid-gutter-width: 30px;
+@grid-float-breakpoint: 768px;
+/* 믹스인: 그리드 변수와 함께 그리드 컬럼을 위한 시맨틱 CSS를 생성하는데 사용 */
+     - TODO: 시맨틱 CSS: ??? 
+     - TODO: @gutter: ??? */
+// 일련의 컬럼을 위해 wrapper 를 생성합니다.
+.make-row(@columns; @gutter: @grid-gutter-width) {
+  // Then clear the floated columns
+  .clearfix();
+
+  @media (min-width: @screen-sm-min) {
+    margin-left:  (@gutter / -2);
+    margin-right: (@gutter / -2);
+  }
+
+  // 컬럼들의 콘텐츠를 정렬하기 위해 중첩된 행들에 음수 마진을 줍니다
+  .row {
+    margin-left:  (@gutter / -2);
+    margin-right: (@gutter / -2);
+  }
+}
+
+```
