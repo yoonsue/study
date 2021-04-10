@@ -129,3 +129,14 @@
 }
 
 ```
+
+##### 테이블 열 너비 조정하기 (https://stackoverflow.com/questions/15115052/how-to-set-up-fixed-width-for-td?answertab=votes#tab-top)
+###### For Bootstrap 4.0
+```html
+<tr>
+  <th style="width: 16.66%">Col 1</th>
+  <th style="width: 25%">Col 2</th>
+  <th style="width: 50%">Col 4</th>
+  <th style="width:  8.33%">Col 5</th>
+</tr>
+```
