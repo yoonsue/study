@@ -46,9 +46,9 @@ Joshua Kerievsky
       - interface 계층과 implementatin 계층을 구분해라
       - implementation variation과 type(interface) variation을 각각 만들고, composition aggregation 관계를 만들어라.
   - #### 상속시 고려해야할 사항
-    - inheritance of function interface only: 메소드 헤더만 제공할지
-    - inheritance of function default implementation: 기본 구현까지 제공할지
-- polymorphism: 상속을 통해 클래스에 추가 기능들이 붙어갈 수 있는 것
+    - inheritance of function interface only: 메소드 헤더만 제공할지 (`implements` in Java)
+    - inheritance of function default implementation: 기본 구현까지 제공할지 (`extends` in Java)
+- polymorphism: 상속을 통해 클래스의 내부 구현이 다양하게 변경될 수 있는 것
 
 #### OO의 advanced 원리
 1. SRP(The Single Responsibility Principle): 하나의 메소드는 한가지 일만 잘하면 된다. --> 위반하면, rigidity 와 fragility가 깨짐
@@ -75,7 +75,8 @@ Joshua Kerievsky
   - 요구사항 문서나 로직 구조가 변경될때, 변경사항을 받아들이는 과정에서 원래 코드가 잘 유지되지 않는거
 - Needless Complexity (불필요한 복잡도)
 - Needless Repetition (불필요한 반복 코드)
-- Opacity (ignorance, negligence) (불투명성) `TODO: 아직 불명확함.`
+- Opacity (ignorance, negligence) (불투명성)
+B  - 한눈에 잘 들어오지 않는것
 
 #### 1.1.1 나쁜 코드 예제
 ```c
