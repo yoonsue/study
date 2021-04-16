@@ -81,14 +81,15 @@ public <T> ReturnType<T> methodC(T t) { ... }   // 제네릭 메소드
 * ORM: Object Relational Mapping, 객체와 DB 테이블이 매핑을 이루는 것
 * JPA: Java Persistent API, ORM을 사용하기 위한 인터페이스를 모아둔 것
 
-#### `implements` VS `extends`
+## `implements` VS `extends`
 https://velog.io/@hkoo9329/%EC%9E%90%EB%B0%94-extends-implements-%EC%B0%A8%EC%9D%B4
-| 구분 | `implements` | `extends` |
-| --- | --- | --- |
-| 상속 | 인터페이스 | 일반 및 abstract 클래스 |
-|  | interface 내 모든 메소드 `@Override`(재정의) 필수 | |
+| 구분 | `implements` | `extends` | abstract
+| --- | --- | --- | --- |
+| 부모에서 | 선언만 | 선언과 정의 모두 | extends와 interface 혼합 |
+| 상속 | 인터페이스 | 일반 및 abstract 클래스 | - |
+|  | interface 내 모든 메소드 `@Override`(재정의) 필수 | `@Override` 없이 부모의 메소드 가져다 쓸 수 있음 | - |
 
-##### 가능한 경우
+### 가능한 경우
 - 인터페이스간 확장 : `interfaceA extends interfaceB`
-- 클래스간 확장(단일클래스만 확장 가능) : `classA extends classB`
+- 클래스간 확장(한번에 한 클래스만 확장 가능) : `classA extends classB`, `classC extend classA` 하면 `classC`는 `classB`의 메소드 사용가능
 - 인터페이스 구현(모든 메소드): `classA implements interfaceA, interfaceB`
