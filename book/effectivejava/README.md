@@ -80,3 +80,15 @@ public <T> ReturnType<T> methodC(T t) { ... }   // 제네릭 메소드
 (기존 SQL 중심적 개발시 DTO 객체 변경, mapping이 번거롭기 때문에 나옴) 
 * ORM: Object Relational Mapping, 객체와 DB 테이블이 매핑을 이루는 것
 * JPA: Java Persistent API, ORM을 사용하기 위한 인터페이스를 모아둔 것
+
+#### `implements` VS `extends`
+https://velog.io/@hkoo9329/%EC%9E%90%EB%B0%94-extends-implements-%EC%B0%A8%EC%9D%B4
+| 구분 | `implements` | `extends` |
+| --- | --- | --- |
+| 상속 | 인터페이스 | 일반 및 abstract 클래스 |
+|  | interface 내 모든 메소드 `@Override`(재정의) 필수 | |
+
+##### 가능한 경우
+- 인터페이스간 확장 : `interfaceA extends interfaceB`
+- 클래스간 확장(단일클래스만 확장 가능) : `classA extends classB`
+- 인터페이스 구현(모든 메소드): `classA implements interfaceA, interfaceB`
