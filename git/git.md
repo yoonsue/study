@@ -19,3 +19,4 @@ Git 구조
 | `git reset --hard HEAD~` | 이전 커밋 취소 |
 | `git cherry-pick "<commit>"` | 현재 브랜치로 특정 커밋 복사 |
 | `git log --grep "<pattern>"` | 특정 코멘트(패턴) 검색 |
+| `git push origin :<branch_name>` | 리모트 브랜치 삭제 |
