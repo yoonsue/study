@@ -53,15 +53,19 @@
 
 ### 4. Prototype
 - [Prototype](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/prototype)
-* clone()이 정의된 인터페이스, 상속받아 구현하는 구현체
+  > clone()이 정의된 인터페이스. (a.k.a. 다른이름으로 저장하기)  
+  > <u>GoF:</u> 생성할 객체의 종류를 명세화하는 데에 원형이 되는 예시물을 이용하고, 그 원형을 복사함으로써 새로운 객체를 생성하는 패턴  
+  > <u>위키:</u> 기존 객체를 복제함으로써 객체를 생성한다.
 * 프로토타입 객체의 서브클래스가 clone 연산을 정의해야함
-  * clone 연산을 구현할 때 사본이 원본으로부터 무엇을 복사하고 공유할 것인지 잘 결정해야함
+  * <b><u>중요포인트:</u></b> clone 연산을 구현할 때 사본이 원본으로부터 무엇을 복사하고 공유할 것인지 잘 결정해야함
 * 객체 자체를 복사하기 때문에 서브클래싱을 필요로 하지 않고, 오히려 초기화 동작을 필요로 함
 * 런타임에 객체 생성/삭제
  
 * 사용 예
-  * GUI-style JavaBeans
-  * 트랜잭션 <br/>(객체를 복사 -> 복사한 객체(Prototype)에 트랜잭션 수행 -> 원래 객체와 바꿔치기)
+  * `GUI-style JavaBeans`
+  * `트랜잭션` <br/>(객체를 복사 -> 복사한 객체(Prototype)에 트랜잭션 수행 -> 원래 객체와 바꿔치기)
+  * `악보 생성 프로그램`
+  * `initial 상태의 XML 파일 복사`할때 
   
 * 유의
   * 추상 팩토리: 프로토타입 집합을 저장, 필요할때 복제해서 제품 객체를 반환하도록 사용 가능
@@ -273,9 +277,22 @@ concreteStrategy(알고리즘) 간 서로 상호교환 가능함
 
 
 ### 22. Template Method
-* 추상 클래스에서 구현된 (보통 자주 사용되는 혹은 필수적인 절차) 메소드
+  > 추상 클래스에서 정의/구현된 구조(자주 사용되는, 로직 구성 혹은 절차)를 제공하는 메서드  
+  > <u>GoF:</u> 객체의 연산에는 알고리즘의 뼈대만을 정의하고 각 단계에서 수행할 구체적 처리는 서브클래스 쪽으로 미루는 패턴  
+  > <u>위키:</u> 상위 클래스에서는 추상적으로 표현하고 그 구체적인 내용은 하위 클래스에서 결정되는 디자인 패턴
+* <b><u>중요포인트:</u></b> 훅 연산(오버라이드 가능한 메소드) 선정하는 것이 관건
+  * template method: never overriden
+  * primitive(abstract) methods: must be overriden
+  * hook methods: may be overriden
 * 코드 재사용을 위한 기술
-* 훅 연산(오버라이드 가능한 메소드) 지정하는 것이 관건
+
+* 유의
+  * 템플릿 메서드: 구조(절차, 로직)에 대한 명세를 해둔 메서드 (혹은 구조)
+  * 팩토리 메서드: 생성에 책임이 있는 메서드 (혹은 구조)
+  > 메서드로만 보는건지, 패턴 구조를 포함해서 보는건지 의견이 분분한 거 같다.  
+  > `팩토리 메서드는 템플릿 메서드의 파생인가?` 에 대한 의견이 분분한거 같다. (내 결론은 `비슷하지만 아니다.` 이다.)
+  >  * [팩토리 메서드는 템플릿 메서드의 파생인가? (1)](https://stackoverflow.com/questions/55461586/is-factory-method-pattern-a-specialized-case-of-template-method-pattern)
+  >  * [팩토리 메서드는 템플릿 메서드의 파생인가? (2)](https://softwareengineering.stackexchange.com/questions/340099/factory-method-is-a-specialization-of-template-method-how)
 
 
 ### 23. Visitor
