@@ -165,20 +165,26 @@
     )
     ```
 
-- 장/단점: Decorator 를 사용하면 개발은 쉬워지겠지만 설계가 다양화됨
+- 장점: 규모를 분할하고 계층화 하기 좋음
+- 단점: 어디서 책임이 추가된 것인지 확인하기 어려울 수 있음
 - 구현시 유의:
   - component 클래스는 가볍게 유지
   - decorator 인터페이스 일치
   - 단일 책임만 추가할 경우 decorator + concreateDecorator 둘 다 사용하지 않고,  
     concreateDecorator만 사용해도 됨
 
+- 예
+  - `InputStream`
+  - `BlockingList implements List`
+
 - 유의
   - Decorator: 객체의 *겉(인터페이스)*를 추가함
   - Strategy: 객체의 대체를 통해 객체 *내부*적으로 기능을 변경하거나 확장하는 방법을 제공
   - Adapter: Decorator는 일종의 Adapter이나,  
-    Adapter는 인터페이스의 변경에 초점을,  
-    Decorator는 객체의 책임과 행동의 변화에 초점을 둠
-  - Composite: Decorator는 한 구성요소만을 갖는 Composite임
+    Adapter는 *인터페이스*의 변경에 초점을,  
+    Decorator는 객체의 *책임과 행동*의 변화에 초점을 둠
+  - Composite: Decorator는 *한 구성요소만*을 갖는 Composite임
+  - Chain of Responsibility: Decorator 는 ConcreteDecorator가 대부분 행동의 책임을 맡으나, Chain of Responsibility는 책임을 적절한 핸들러에게 넘기는 행위를 말함
 
 ### 10. Facade
 
@@ -297,6 +303,7 @@ one-many pub-sub
 
 - 상태를 객체로 승격시켜, 상태 전이를 명확하게 함  
   (종종 대량의 조건문을 만들지 않기 위해(aka 상태의 종류가 다양할 때) 상태를 독립적으로 두어 구현함)
+- 일반적으로 switch - case 문이 길어질 경우 변경함
 
 - 구현유의:
   - 상태 전이의 책임은 state 클래스에 있도록 구현하는 것이 이상적  
