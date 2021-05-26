@@ -147,15 +147,37 @@
     Decorator: Component 객체에 대한 참조자를 관리하면서 Component에 정의된 인터페이스를 만족하도록 인터페이스를 정의
     ConcreteDecorator: Component에 새롭게 추가할 서비스를 실제로 구현하는 클래스
 -->
+  > 개별 객체에 새로운 책임을 추가하고자 할 경우 사용하는 패턴 (a.k.a. 옵션 추가)  
+  > *GoF:* 주어진 상황 및 용도에 따라 어떤 객체에 책임을 덧붙이는 패턴으로, 기능 확장이 필요할 때 서브클래싱 대신 쓸수 있는 유연한 대안이 될 수 있음  
+  > *위키:* 기존 객체의 매서드에 새로운 행동을 추가하거나 오버라이드 할 수 있다.
 
-- 개별적인 객체에 새로운 책임을 추가하고자 할 경우 사용하는 패턴
-- 런타임시 동적으로 새로운 책임 추가(재귀적 합성)하는 객체
-- Component 인터페이스를 상속받는 Decorator 인터페이스를 생성해서 인스턴스(ConcreteDecorator의 인스턴스)를 생성
+- Component 인터페이스를 상속받는 Decorator 인터페이스를 생성해서 인스턴스
+  (ConcreteDecorator의 인스턴스)를 생성 - `component가 decorator의 내부에 private 멤버로 존재함`
+- 런타임시 동적으로 새로운 책임 추가하는 객체
+  - 아래처럼 재귀적 합성을 통해 여러 책임 추가 가능
+
+    ```java
+    // Stream (Interface or AbstractClass)
+    Stream* aStream = new CompressingStream(  // Concreate Decorator #2 - CompressingStream
+      new ASCII7Stream (                      // Concreate Decorator #1 - ASCII7Stream
+        new FileStream("aFileName")           // Concreate Stream
+      )
+    )
+    ```
+
+- 장/단점: Decorator 를 사용하면 개발은 쉬워지겠지만 설계가 다양화됨
+- 구현시 유의:
+  - component 클래스는 가볍게 유지
+  - decorator 인터페이스 일치
+  - 단일 책임만 추가할 경우 decorator + concreateDecorator 둘 다 사용하지 않고,  
+    concreateDecorator만 사용해도 됨
 
 - 유의
-  - Decorator: 객체의 겉(인터페이스)를 추가함
-  - Strategy: 객체의 대체를 통해 객체 내부적으로 기능을 변경하거나 확장하는 방법을 제공
-  - Adapter: Decorator는 일종의 Adapter이나, Adapter는 인터페이스의 변경에 초점을, Decorator는 객체의 책임과 행동의 변화에 초점을 둠
+  - Decorator: 객체의 *겉(인터페이스)*를 추가함
+  - Strategy: 객체의 대체를 통해 객체 *내부*적으로 기능을 변경하거나 확장하는 방법을 제공
+  - Adapter: Decorator는 일종의 Adapter이나,  
+    Adapter는 인터페이스의 변경에 초점을,  
+    Decorator는 객체의 책임과 행동의 변화에 초점을 둠
   - Composite: Decorator는 한 구성요소만을 갖는 Composite임
 
 ### 10. Facade
@@ -269,10 +291,19 @@ one-many pub-sub
     State: 각 상태별 필요한 행동을 캡슐화하여 인터페이스로 정의 (Singleton 임)
     ConcreteState: 각 서브 클래스들 context 따라 처리되어야할 실제 행동 구현
 -->
-동일한 동작을 객체의 상태에 따라 다르게 처리해야 할 때 사용하는 디자인 패턴
+  > 동일한 동작을 객체의 상태에 따라 다르게 처리해야 할 때 사용하는 패턴  
+  > *GoF:* 객체의 내부 상태에 따라 스스로 행동을 변경할 수 있게끔 허가하는 패턴으로, 이렇게 하면 객체는 마치 자신의 클래스를 바꾸는 것처럼 보임  
+  > *위키:* 동일한 동작을 객체의 상태에 따라 다르게 처리해야 할 때 사용하는 디자인 패턴
 
-상태를 객체로 승격시켜, 상태 전이를 명확하게 함
-(종종 대량의 조건문을 만들지 않기 위해(aka 상태의 종류가 다양할 때) 상태를 독립적으로 두어 구현함)
+- 상태를 객체로 승격시켜, 상태 전이를 명확하게 함  
+  (종종 대량의 조건문을 만들지 않기 위해(aka 상태의 종류가 다양할 때) 상태를 독립적으로 두어 구현함)
+
+- 구현유의:
+  - 상태 전이의 책임은 state 클래스에 있도록 구현하는 것이 이상적  
+    (호출해서 사용하는 방식을 지향해야함)
+  - State instance 생성과 삭제
+    - 필요할때만 생성 후 삭제: 상태가 자주 바뀌지 않을 때
+    - 필요하지 않아도 미리 생성 & 삭제하지 않음: 상태 변화가 자주 있을 떄
 
 - 유의
   - Strategy: state는 하나의 state 에 관한 구현을 하나, 외부의 entity 에 의한 Strategy 는 아님
