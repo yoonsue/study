@@ -52,6 +52,8 @@
 
 ### 3. Factory Method
 
+a.k.a. Virtual Constructor
+
 - [Impl of Factory Method](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/abstract_factory)
   > 객체를 생성(지정)하는 메소드  
   > *GoF:* 객체를 생성하는 인터페이스는 미리 정의하되, 인스턴스를 만들 클래스의 결정은 서브클래스 쪽에서 내리는 패턴. 팩토리 메서드 패턴에서는 클래스의 인스턴스를 만드는 시점을 서브클래스로 미룸  
@@ -64,6 +66,8 @@
     - Abstract Factory: 내부에 (보통 팩토리 메소드를 사용해서) 여러 객체를 생성하는 하나의 객체(인터페이스)
 
 ### 4. Prototype
+
+a.k.a. Clone
 
 - [Prototype](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/prototype)
   > clone()이 정의된 인터페이스. (a.k.a. 다른이름으로 저장하기)  
@@ -99,6 +103,8 @@
 ## 구조 패턴
 
 ### 6. Adapter
+
+a.k.a. Wrapper
 
 <!-- 
     Target: 사용자가 사용할 응용 분야에 종속적인 인터페이스를 정의하는 클래스
@@ -141,6 +147,7 @@
 ### 8. Composite
 
 - [Composite](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/composite)
+- a.k.a. object tree
 <!-- Component(총괄인터페이스), Composite(하위그룹객체), Leaf(최하위객체), Client -->
 - 계층 구조를 어떻게 형성하는지 보여줌 (파워포인트 그룹 객체와 같은 원리)
 - 사용자가 어떤 Leaf나 Composite 클래스가 존재하는지 모르게 공통 연산들을 정의한 Component(총괄인터페이스)
@@ -157,6 +164,8 @@
   - File Directory
 
 ### 9. Decorator
+
+a.k.a. Wrapper
 
 <!-- 
     Component: 동적으로 추가할 서비스를 가질 가능성이 있는 객체들에 대한 인터페이스
@@ -209,6 +218,8 @@
 
 ### 11. Flyweight
 
+a.k.a. Cache
+
   > 여러번 이용할 수 있도록 공유된 객체(구조를 정의)  
   > *GoF:* 크기가 작은 객체가 여러 개 있을 때, 공유를 통해 이들을 효율적으로 지원하는 패턴  
   > *위키:* 다수의 유사한 객체를 생성·조작하는 비용을 절감할 수 있다.
@@ -259,6 +270,8 @@
 
 ### 13. Chain of Responsibility
 
+a.k.a. CoR, Chain of Command
+
 <!-- 
     Handler: 요청 처리 인터페이스 정의, 후속 처리자와의 연결 구현 (요청의 시작)
     ConcreteHandler: 스스로 요청을 처리할 일은 하고 남은 일은 후속 처리자에게 넘김
@@ -281,10 +294,27 @@
 
 ### 14. Command
 
-객체 내부의 작업 혹은 요청을 캡슐화함
+a.k.a. Action, Transaction
+
+  > 중간에 Interface(Command)를 추가함으로써 객체 내부의 작업 혹은 요청을 캡슐화함  
+  > *GoF:* 요청을 객체의 형태로 캡슐화하여, 서로 요청이 다른 사용자의 매개변수화, 요청 저장 또는 로깅, 그리고 연산의 취소를 지원하게 만드는 패턴  
+  > *위키:* 명령어를 각각 구현하는 것보다는 하나의 추상 클래스에 메서드를 하나 만들고 각 명령이 들어오면 그에 맞는 서브 클래스가 선택되어 실행하는 것
 
 - 사용 예
   - Transaction - undo 시 기존 상태 기억을 위해 메멘토 패턴을 사용
+  - Concrete Command를 메서드 인수로 전달 가능, 큐잉(작업 예약), Undo가 필요한 작업(작업상태 저장, Memento 패턴)
+
+- 유의
+  - Chain of Responsibility: 같이 사용될수 있음. 잠재적 Receiver 중 하나가 처리할 때까지 순차적으로 요청을 전달
+  - Mediator: 송신자와 수신자 간 직접 연결을 제거해 중재자 개체를 통해 간접 통신
+    <-> Command: 발신자와 수신자 간 단방향 연결
+  - Observer: 수신자가 수신 요청을 동적으로 구독/구독 취소할 수 있음
+  - Memento: 실행 취소를 구현할때 같이 사용할 수 있음
+  - Prototype: 명령 사본의 기록을 저장해야할 때 사용될 수 있음
+  - Visitor: Command 패턴의 강력한 버전으로 취급할 수 있음
+  - Strategy: 일부 작업으로 개체를 매개변수화할 수 있기에 비슷하지만, 의도가 다름
+    - Command: 모든 작업의 개체화 가능
+    - Strategy: 동일한 작업을 수행하는 여러 가지 방법이므로 단일 컨텍스트 클래스 내에서 알고리즘 교환만 가능
   
 ### 15. Interpreter
 
@@ -308,6 +338,8 @@
 
 ### 17. Mediator
 
+a.k.a. Intermediary, Controller
+
 한 객체가 다른 객체를 너무 많이 참조 혹은 복잡한 상호작용을 해,  
 중간단계(loose coupling)를 놓고 싶을때 사용하는 패턴
 
@@ -320,6 +352,8 @@
 
 ### 18. Memento
 
+a.k.a. Snapshot
+
 - 상태 복원을 위해 객체의 이전 상태를 저장하는 패턴
 - 객체의 상태를 얻는데 구현이 노출되어, 캡슐화를 할때 사용하는 패턴
 
@@ -329,6 +363,8 @@
     - wide interface(public + private): originator 클래스에게 제공하는 서비스
 
 ### 19. Observer
+
+a.k.a. Event-Subscriber, Listener
 
 <!-- 
  subject(감시자들을 알고 있음)
