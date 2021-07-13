@@ -148,7 +148,13 @@ a.k.a. Wrapper
 
 - [Composite](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/composite)
 - a.k.a. object tree
+
 <!-- Component(총괄인터페이스), Composite(하위그룹객체), Leaf(최하위객체), Client -->
+  > 사용자가 어떤 Leaf나 Composite 클래스가 존재하는지 모르게 공통 연산들을 정의한 Component(총괄인터페이스)  
+  > (a.k.a. 파워포인트 그룹 객체)    
+  > *GoF:* 객체들의 관계를 트리 구조로 구성하여 부분-전체 계층을 표현하는 패턴으로, 사용자가 단일 객체와 복합 객체 모두 동일하게 다로도록 함  
+  > *위키:* 0개, 1개 혹은 그 이상의 객체를 묶어 하나의 객체로 이용할 수 있다.
+
 - 계층 구조를 어떻게 형성하는지 보여줌 (파워포인트 그룹 객체와 같은 원리)
 - 사용자가 어떤 Leaf나 Composite 클래스가 존재하는지 모르게 공통 연산들을 정의한 Component(총괄인터페이스)
   - Composite(그룹객체)은 linked list, array, tree, hash table 등을 써 자신의 자식들을 저장
@@ -162,6 +168,15 @@ a.k.a. Wrapper
 
 - 사용 예
   - File Directory
+
+- 유의
+  - Chain of Responsibility: 리프 구성요소가 요청을 받으면 모든 상위 구성 요소의 체인을 통해 개체 트리의 루트까지 전달할 수 있음
+  - Iterator: Composite 트리 탐색 가능
+  - Visitor: Composite 트리에 대해 작업 실행 가능
+  - Flyweight: Composite의 공유 리프 노드를 flyweight로 구현하여 RAM 절약 간ㅇ
+  - Decorator: 둘다 재귀 합성에 의존하여 개방형 개체 수를 고성하기 때문에 유사한 구조 다이어그램을 가짐
+    - 단, Decorator는 하나의 자식 component만 존재하며, 추가 책임 행위가 있음. Decorator가 Composite에서 분화하여 특수화된 케이스라고 보면 됨
+  - Prototype: Decorator와 Composite과 같이 사용하면 좋음. 복잡한 구조를 복제함으로 재구성할 필요가 없게 함
 
 ### 9. Decorator
 
