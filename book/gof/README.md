@@ -163,7 +163,7 @@ a.k.a. Wrapper
   - 행동은 Leaf(최말단객체)가 수행 ([Chain of Responsibility](###-13.-chain-of-responsibility))
 
 - 자식 관리 인터페이스를 Component가 갖느냐? Composite(그룹객체)이 갖느냐?
-  - Component: Leaf 클러스의 인스턴스가 Add() Remove()와 같은 행동을 하지 않도록 안전성 유지를 해야함
+  - Component: Leaf 클래스의 인스턴스가 Add() Remove()와 같은 행동을 하지 않도록 안전성 유지를 해야함
   - Composite: Leaf 클래스 인스턴스가 무의미한 행동을 하지 않는 안전성을 보장하나, composite 클래스가 어떤 타입으로 자식들을 관리하는지 알 수 없음
 
 - 사용 예
@@ -173,7 +173,7 @@ a.k.a. Wrapper
   - Chain of Responsibility: 리프 구성요소가 요청을 받으면 모든 상위 구성 요소의 체인을 통해 개체 트리의 루트까지 전달할 수 있음
   - Iterator: Composite 트리 탐색 가능
   - Visitor: Composite 트리에 대해 작업 실행 가능
-  - Flyweight: Composite의 공유 리프 노드를 flyweight로 구현하여 RAM 절약 간ㅇ
+  - Flyweight: Composite의 공유 리프 노드를 flyweight로 구현하여 RAM 절약 
   - Decorator: 둘다 재귀 합성에 의존하여 개방형 개체 수를 고성하기 때문에 유사한 구조 다이어그램을 가짐
     - 단, Decorator는 하나의 자식 component만 존재하며, 추가 책임 행위가 있음. Decorator가 Composite에서 분화하여 특수화된 케이스라고 보면 됨
   - Prototype: Decorator와 Composite과 같이 사용하면 좋음. 복잡한 구조를 복제함으로 재구성할 필요가 없게 함
