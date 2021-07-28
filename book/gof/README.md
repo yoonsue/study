@@ -367,6 +367,7 @@ a.k.a. Intermediary, Controller
 
 ### 18. Memento
 a.k.a. Snapshot
+[refactoring guru 코드 예시](https://refactoring.guru/design-patterns/memento)
 
   > 상태 복원을 위해 객체의 이전 상태를 저장하는 패턴  
   > *GoF:* 캡슐화를 위배하지 않은 채로 어떤 객체의 내부 상태를 잡아내고 실체화시켜, 이후에 해당 객체가 그 상태로 되돌아올 수 있도록 하는 패턴  
@@ -375,10 +376,13 @@ a.k.a. Snapshot
 - 상태 복원을 위해 객체의 이전 상태를 저장하는 패턴
 - 객체의 상태를 얻는데 필요한 직접적인 인터페이스를 둠으로 객체를 캡슐화할때 사용하는 패턴
 
+- 인터페이스 생성 시, private / public을 잘 구분지어야 함
+  - narrow interface(public): caretaker 클래스에게 제공하는 서비스
+  - wide interface(public + private): originator 클래스에게 제공하는 서비스
+
 - 유의
-  - 인터페이스 생성 시, private / public을 잘 구분지어야 함
-    - narrow interface(public): caretaker 클래스에게 제공하는 서비스
-    - wide interface(public + private): originator 클래스에게 제공하는 서비스
+  - Iterator: iterator 와 함께 사용하여 반복 상태를 캡처하고 필요한 경우 롤백할 수 있음
+  - prototype: 히스토리에 저장하려는 상태인 객체가 상당히 간단하고 외부 리소스에 대한 링크가 없거나 링크가 다시 설정하기 쉬운 경우, 아예 clone 하는 prototype 패턴을 사용하는게 나음
 
 ### 19. Observer
 
