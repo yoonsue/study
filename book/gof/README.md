@@ -378,7 +378,7 @@ a.k.a. Snapshot
 - 유의
   - 인터페이스 생성 시, private / public을 잘 구분지어야 함
     - narrow interface(public): caretaker 클래스에게 제공하는 서비스
-    - wide interface(public + private): originator 클래스에게 제공하는 서비스 (메몬토 생성, 복귀의 책임은 원본에게 있음)
+    - wide interface(public + private): originator 클래스에게 제공하는 서비스
 
 ### 19. Observer
 
