@@ -366,16 +366,19 @@ a.k.a. Intermediary, Controller
   - Bridge: class들의 시스템(?)을 나타내는 인터페이스
 
 ### 18. Memento
-
 a.k.a. Snapshot
 
+  > 상태 복원을 위해 객체의 이전 상태를 저장하는 패턴  
+  > *GoF:* 캡슐화를 위배하지 않은 채로 어떤 객체의 내부 상태를 잡아내고 실체화시켜, 이후에 해당 객체가 그 상태로 되돌아올 수 있도록 하는 패턴  
+  > *위키:* Ctrl + z 와 같은 undo 기능 개발할 때 유용한 디자인패턴. 클래스 설계 관점에서 객체의 정보를 저장
+
 - 상태 복원을 위해 객체의 이전 상태를 저장하는 패턴
-- 객체의 상태를 얻는데 구현이 노출되어, 캡슐화를 할때 사용하는 패턴
+- 객체의 상태를 얻는데 필요한 직접적인 인터페이스를 둠으로 객체를 캡슐화할때 사용하는 패턴
 
 - 유의
   - 인터페이스 생성 시, private / public을 잘 구분지어야 함
-    - narrow interface(public): memento 클래스에게 제공하는 서비스
-    - wide interface(public + private): originator 클래스에게 제공하는 서비스
+    - narrow interface(public): caretaker 클래스에게 제공하는 서비스
+    - wide interface(public + private): originator 클래스에게 제공하는 서비스 (메몬토 생성, 복귀의 책임은 원본에게 있음)
 
 ### 19. Observer
 
