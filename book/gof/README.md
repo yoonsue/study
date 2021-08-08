@@ -45,7 +45,10 @@
 ### 2. Builder
 
 - [Builder](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/builder)
-- 복잡한 객체를 한단계씩 실행시키며 생성함. 마지막 단계에서 객체를 반환함.
+  > 비즈니스 로직과 표현부 간의 분리. 복잡한 객체를 한단계씩 실행시키며 생성함. 마지막 단계에서 객체를 반환함  
+  > *GoF:* 복합객체의 생성과정과 표현방법을 분리하여 동일한 생성절차에서 서로 다른 표현 결과를 만들 수 있게 하는 패턴  
+  > *위키:* 생성(construction)과 표기(representation)를 분리해 복잡한 객체를 생성한다
+
 - 각각 독립된 여러 단계를 거치며, 특정 단계의 선택폭(프로토콜, representation 방법)이 넓을 때 사용하면 좋을 듯함.
 - 사용 예
   - RTF(서식있는 텍스트 파일) 리더
