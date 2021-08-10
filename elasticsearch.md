@@ -8,7 +8,7 @@
 | index 추가 | `curl -XPUT 'localhost:9200/index?pretty'` |
 | document 추가 |  `curl -XPOST 'localhost:9200/index1/info/1?pretty' -H 'Content-Type: application/json' -d '{ "info": "infomation#1" }'` |
 | 1) Id 없는 경우 | `curl -XPOST 'localhost:9200/index2/info?pretty' -H 'Content-Type: application/json' -d '{ "info": "infomation#2" }'` |
-| 2) 파일로 넣기 | `curl -XPOST 'localhost:9200/customer2/info/2?pretty' -H 'Content-Type: application/json' -d @data.json
+| 2) 파일로 넣기 | `curl -XPOST 'localhost:9200/customer2/info/2?pretty' -H 'Content-Type: application/json' -d @data.json` |
 | document조회 | `curl -XGET 'localhost:9200/customer2/_search?pretty'` |
 |  | `curl -XGET 'localhost:9200/_all/_search?pretty'` |
 |  | `curl -XGET 'localhost:9200/index2/info/1?pretty'` |
