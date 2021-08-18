@@ -253,7 +253,8 @@ a.k.a. Wrapper
     - 서로를 직접 알지 못하고 중재자를 통해서만 상호작용 가능 <-> facade : 새로운 기능성을 추가할 수 없고, 새로운 추가 기능에 대해서는 알수도 없음
   - flyweight: 작은 개체를 만드는 방법 <-> facade: 전체 하위 시스템을 나타내는 단일 개체를 만드는 방법
   - singleton: 하나만 있어도 된다면 singleton으로 구현
-  - builder
+  - builder: 객체를 생성하는 방법 중 하나. 복잡한 객체 구성을 표현부와 구현부로 분리. <-> facade: 객체의 구조 중 하나. 하위 인터페이스에 접근하는데 사용할 수 있는 상위 인터페이스
+<!--  https://stackoverflow.com/questions/39577474/builder-vs-facade-design-pattern  -->
   - adapter: 기존 인터페이스를 사용 가능하게 만들려고 할 때. 하나의 개체만 래핑 <-> facade: 기존 개체에 대한 새 인터페이스를 정의. 전체 하위 시스템과 함께 작동
 
 ### 11. Flyweight
