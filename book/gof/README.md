@@ -409,7 +409,6 @@ a.k.a. Intermediary, Controller
   서브 객체간 직접 통신 불가능
   - Bridge: 구현부와 추상화부를 분리하는 방법에 대한 패턴
   - Adapter: 기존 인터페이스를 필요한 형태로 수정해 재활용
-  - Mediator: 
   - Observer: colleague 객체가 subject 객체로 동작하여 상태 변화가 일어날때마다 중재자한테 통보 -> 중재자가 다른 객체에게 변경을 통보해 후처리 가능
 
 ### 18. Memento
@@ -435,25 +434,42 @@ a.k.a. Snapshot
 
 a.k.a. Event-Subscriber, Listener
 
-<!-- 
- subject(감시자들을 알고 있음)
- observer(객체를 갱신하는데 필요한 인터페이스를 정의)
- concreteSubject(ConcreteObserver 객체에게 알려주어야 하는 상태를 저장, observer 에게 상태 변화 통보)
- concreteObject(ConcreteSubject 객체에 대한 참조자 관리, 주체의 상태와 일관성을 유지해야하는 상태를 저장)-->
-one-many pub-sub
+  > one-many pub-sub. 엑셀 특정 칸(subject)을 포함한 계산식을 여러 칸(observer)에 지정  
+  > *GoF:* 객체들 사이에 일대다 의존 관계를 정의하여, 어떤 객체의 상태가 변할 때 그 객체에 의존성을 가진 다른 객체들이 변화를 통지받고 자동으로 갱신될 수   
+  > *위키:* 어떤 클래스에 변화가 일어났을 때, 이를 감지하여 다른 클래스에 통보해주는 것
 
-변경사항 - aspect
+구조
+- subject(publisher, notify. 감시자들을 알고 있음)
+- observer(subscriber, update. 객체를 갱신하는데 필요한 인터페이스를 정의)
+- concreteSubject(observer 에게 상태 변화 통보. ConcreteObserver 객체에게 알려주어야 하는 상태를 저장)
+- concreteObserver(ConcreteSubject 객체에 대한 참조자 관리, 주체의 상태와 일관성을 유지해야하는 상태를 저장)
 
+사용환경
+- 한 객체의 변화를 확인해야하는 객체가 동적으로 바뀔때
+
+유의
 - 구독 취소 시 이벤트 알림을 받지 않을 수 있음을 보장해야함
-- concreteSubject 삭제시 concreteObserver 가 dangling 레퍼런스를 가짐
-  - concreteSubject 삭제 시, 참조하고 있는 concreteObserver 에게 알려야함
+- concreteSubject 삭제시 concreteObserver 가 dangling 레퍼런스를 가질 수 있음
+  - concreteSubject 삭제 시, 참조하고 있는 concreteObserver 에게 알려서 참조자를 삭제하는 절차가 필요할 수 있음
+- observer를 call 한 이후에 연산을 정의하게 되면, concreteObserver와 concreteSubject 간 상태 정보가 불일치할 수 있음
+  - Subject 인터페이스에 override할 연산을 정의하고, override할 연산 후에 notify연산을 수행하도록 해야함
+- 푸시 / 풀 모델
+  - 푸시 : subject가 자신의 변경에 대한 상세 정보를 observer에게 전달
+  - 풀 : subject가 최소한의 정보만 전달하고, 감시자가 다시 상세 정보 요청
+- 여러 주체가 변경될 경우, 감사자들에게 두 번 이상 통보될 수 있음
+  - 다음 역할을 수행하는 changeManager 객체 두어 해결할 수 있음
+    1. 주체와 감시자를 매핑하고 유지하는 인터페이스 정의
+    2. Notify 할 때 매핑 관계 loop를 돌면서 observer에게 전달하는 등의 방식
 
 - 사용 예
-  - MVC(model - subject, view - observer)
+  - MVC(model - subject, view - observer, controller - mediator)
   
 - 유의
-  - Command: Observer는 공지용으로만 쓰이는 반면, 일반적임. (개념: Observer << Command)
-  - Strategy: **다시 확인할 것**
+  - 요청의 수/발신자
+    - Chain of Responsibility: 순차적으로(setNext 메소드) 잠재적 수신자 중 하나가 처리하기를 기다리며 요청 전달
+    - Command: 발신자와 수신자 간 단방향. Observer보다 더 일반적인 범주
+    - Observer: 발신자와 수신자 간 단방향. 수신자가 수신요청을 동적으로 구독/구독취소
+    - Mediator: 발신자와 수신자간 직접 연결 제거. 중재자 개체를 통해 간접 통신
 
 ### 20. State
 
