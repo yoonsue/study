@@ -141,11 +141,22 @@ a.k.a. Wrapper
 
 ### 7. Bridge
 
+<!-- 
+ Abstraction: 높은 수준(추상화)의 제어 로직 제공. 실제 작업은 구현 객체에 의존
+ RefinedAbstraction: 제어 논리의 변형 제공
+ Implementor: 모든 ConcreteImplementor에 대한 공통 인터페이스 선언
+ ConcreteImplementor: 플랫폼별 코드 -->
+
 - [Bridge](https://github.com/yoonsue/study/tree/master/book/gof/src/main/java/bridge)
-- 추상적 개념에 해당하는 클래스와 구현에 해당하는 클래스를 분리
+  > 추상적 개념에 해당하는 클래스와 구현에 해당하는 클래스를 분리  
+  > *GoF:* 구현부에서 추상층을 분리하여 각자 독립적으로 변형할 수 있게 하는 패턴  
+  > *위키:* 추상화와 구현을 분리해 둘을 각각 따로 발전시킬 수 있음
+
+- 객체군의 다형성과 독립적인 다른 객체군과의 조합을 위해 사용. 개별적으로 각각 조합하기 보다는 추상화부와 구현부 객체를 따로 두고, 조합할 객체를 참조하도록. (e.g. 색과 모양, 크로스 플랫폼 어플리케이션)
 - 플랫폼 독립적인 코드(Abstraction)와 Application-specific code(Implementor)
-  <!-- Abstraction, RefinedAbstraction, Implementor, ConcreteImplementor -->
-  - 개인적으로 DDD의 Repository interface와 Repository 구현체 간 관계가 이에 해당한다 생각함 아닌것 같군, INTERFACE(ABSTRACT CLASS에 대한 참조자가 있어야함)와 그걸 IMPLEMENTS한 ABSTRACT CLASS간 관계
+
+- 유의
+  - Adapter: 기존 앱과 호환되지 않는 클래스를 잘 작동시키기 위해 사용. <-> Bridge: 일반적으로 사전에 설계 
 
 ### 8. Composite
 
