@@ -29,8 +29,8 @@ for item in some_list:
 
 | 객체지향언어 타입 | 설명 | 예시 |
 | --- | --- | --- |
-| 동적 | 컴파일 시 변수의 타입이 결정되는 언어 | python,JavaScript, Ruby 등 |
-| 정적 | 컴파일 시 자료형을 정하는 것이 아니라 런타임 시 결정 | Java, C, C++, C# 등 |
+| 동적 | 컴파일 시 자료형을 정하는 것이 아니라 런타임 시 결정 | python,JavaScript, Ruby 등 |
+| 정적 | 컴파일 시 변수의 타입이 결정되는 언어 | Java, C, C++, C# 등 |
 > 출처: https://devuna.tistory.com/82
 
 객체 지향 프로그래밍(Object-oriented programming, OOP) : 데이터를 캡슐화(객체 속성)한 객체와 행동(메서드)에 중심을 둠
