@@ -15,12 +15,19 @@
 - GO 루틴: Go 프로그램에서 독립적으로 실행할 수 있는 최소 단위
 - 채널: Go 루틴끼리 통신하기 위한 참조점. Go 루틴 끼리 데이터를 효율적인 방식으로 주고 받을 수 있음
 
+### 왜 go루틴이 좋은가?
+-> go루틴이나 채널은 다른 작업이 끝날 떄까지 기다릴 필요 없이 실행이 시작됨  
+-> 주고 받는 값을 일일히 변수에 저장할 필요 없기 때문에 변수 사용 횟수를 줄일 수 있고, 결과적으로 메모리 공간이 절약됨  
+-> 파이프라인을 사용하게 되면 프로그램 설계를 간결하게 구셩하여 유지보수성이 높아짐
+
 ## 프로세스, 스레드, Go 루틴
 
+프로세스 ⊃ 스레드 ⊃ Go 루틴
+
+- 프로그램: 프로세스의 명령어와 사용자 데이터를 초기화하는 데 사용할 명령어와 데이터를 담은 파일
 - 프로세스:
   - 명령어와 사용자 데이터, 시스템 영역, 그리고 실행 과정에 수집한 다양한 종류의 리소스로 구성된 독립적인 실행 단위
   - 바이너리 파일을 실행한 것
-- 프로그램: 이러한 프로세스의 명령어와 사용자 데이터를 초기화하는 데 사용할 명령어와 데이터를 담은 파일
 - 스레드:
   - 프로그램이나 프로세스보다 좀 더 가볍고 작은 실행 단위. 스레드는 프로세스에 의해 실행되며 독립적인 제어 흐름과 스택을 가짐
   - 프로세스의 일부분
@@ -28,11 +35,9 @@
   - go 프로그램에서 동시에 실행할 수 있는 최소 단위. 유닉스 프로세스 안에 살고 있는 스레드 안에 존재함
   - 스레드보다 가벼워서 수천 내지 수만개를 구동해도 문제가 없음
 
-| | 프로그램 | 프로세스 | 스레드 | Go 루틴 |
-| --- | --- | --- | --- | --- |
-| 설명 | 
-| 집합 관계 | - | 프로세스 ⊃ 스레드 ⊃ Go 루틴
-| 관리 | - | 유닉스 | 좌동 | go 언어 / go 개발자 |
+### go 루틴 vs thread
+
+> https://www.geeksforgeeks.org/golang-goroutine-vs-thread/
 
 ### Go 스케쥴러
 
@@ -51,12 +56,17 @@ Go 스케쥴러가 사용하는 테크닉
 - m: 실행되는 Go 루틴의 개수
 - n: go 루틴을 멀티플렉싱할 os 의 스레드 개수
 
+> https://tech.ssut.me/goroutine-vs-threads/
+
 ### 동시성과 병렬성
 
 - 동시성: 가능하다면 서로 독립적으로 실행할 수 있도록 컴포넌트의 구조를 구성하는 방식
 - 병렬성: 특정한 종류의 개체들이 동시에 실행되는 방식
 
 동시성 지원이 되어야 병렬성 구성 가능. os 와 하드웨어에서 지원되어야 함
+
+![동시성과 병렬성](./concurrency_parallelism.png)
+> 출처: https://seamless.tistory.com/42
 
 ## Go 루틴
 
@@ -162,7 +172,10 @@ Exiting...
 
 ## Go 루틴이 마칠 때까지 기다리기
 
-`sync` 패키지를 이용해 go 루틴이 모두 끝날 때까지 main 함수가 리턴하지 않게 만드는 기법
+`sync` 패키지의 `WaitGroup`을 이용해 go 루틴이 모두 끝날 때까지 main 함수가 리턴하지 않게 만듦  
+-> `WaitGroup`을 생성하여 `Add` 매서드로 대기해야할 go 루틴의 개수를 추가.  
+go 루틴이 종료될 때 `Done` 메서드로 고루틴이 종료되었음을 알림.  
+`Wait` 메서드를 호출하면 대기중인 모든 go루틴이 종료될 때까지 대기
 
 ```go
 package main
@@ -209,7 +222,7 @@ func main() {
 
 > race condition in Go?  
 두개 이상의 go routine이 공유데이터를 가지며, 동시에 공유데이터에 접근할 때 발생  
-https://www.educative.io/answers/what-are-race-conditions-in-golang
+https://medium.com/trendyol-tech/race-conditions-in-golang-511314c0b85
 
 ### WaitGroup Read 카운트가 Done 카운트가 다를 경우
 
@@ -243,5 +256,109 @@ panic: sync: negative WaitGroup counter
 
 ## 채널
 
-Go 루틴끼리 데이터를 주고 받기 위해 사용하는 통신 매커니즘
-채널의 element type: 각 채널마다 특정한 데이터 타입으로만 데이터를 교환할 수 있음
+Go 루틴끼리 데이터를 주고 받기 위해 사용하는 통신 매커니즘  
+
+### 채널의 규칙
+
+1. 채널의 element type: 각 채널마다 특정한 데이터 타입으로만 데이터를 교환할 수 있음
+1. 채널을 함수의 매개변수로 사용할 때 채널의 방향을 명시해야함
+
+| 설명 | 표현 |
+| --- | --- | 
+| 채널 선언 | `c := make(chan int)` |
+| 채널에서 읽기 | `<-c` |
+| 채널에 쓰기 | `c <- x` |
+
+#### 채널에 데이터 쓰기
+
+> c 라는 채널에 x 라는 값을 쓴다  
+`c <- x`
+
+```go
+func writeToChannel(c chan int, x int) {
+	fmt.Println("1", x)
+	c <- x
+	close(c)
+	// 출력 안됨
+	fmt.Println("2", x)
+}
+
+func main() {
+	c := make(chan int)
+
+	go writeToChannel(c, 10)
+	time.Sleep(1 * time.Second)
+}
+
+// RESULT
+// 1 10
+```
+
+위 코드에서 c 라는 채널에서 쓴 값을 아무도 읽지 않기 때문에 `writeChannel()` 함수는 `c <- x` 문장에서 막힘
+
+#### 채널에서 데이터 읽기
+
+위 코드의 main 함수 에 채널 읽기 추가
+
+```go
+func main() {
+	c := make(chan int)
+
+	go writeToChannel(c, 10)
+	time.Sleep(1 * time.Second)
+
+	fmt.Println("Read: ", <-c)
+	time.Sleep(1 * time.Second)
+
+	// 채널이 열려있는지 확인
+	_, ok := <-c
+	if ok {
+		fmt.Println("Channel is open!")
+	} else {
+		fmt.Println("Channel is closed!")
+	}
+}
+
+// RESULT
+// 1 10
+// Read:  10
+// 2 10
+// Channel is closed!
+```
+
+### 함수 매개변수로 지정한 채널
+
+양방향 채널: 읽기/쓰기 모두 가능
+단방향 채널: 읽기/쓰기 중 하나만 가능
+
+```go
+// pings 쓰기 전용 채널
+func ping(pings chan<- string, msg string) {
+    pings <- msg
+}
+
+// pings 읽기 전용 채널, pongs 쓰기 전용 채널
+func pong(pings <-chan string, pongs chan<- string) {
+    msg := <-pings
+    pongs <- msg
+}
+
+func main() {
+    pings := make(chan string, 1)
+    pongs := make(chan string, 1)
+    ping(pings, "passed message")
+    pong(pings, pongs)
+    fmt.Println(<-pongs)
+}
+
+// RESULT
+// passed message
+```
+> 출처: https://gobyexample.com/channel-directions
+
+## 파이프라인
+
+파이프라인: Go루틴과 채널을 연결한 기법. 한쪽 go 루틴의 출력을 다른 go 루틴의 입력으로 연결할 수 있음  
+-> 데이터의 흐름을 일정하게 구현할 수 있음
+
+위의 ping-pong 예제
